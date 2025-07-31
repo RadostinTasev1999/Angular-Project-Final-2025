@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
+import { ApiService } from '../../api.service';
+import { UserService } from '../../user/user.service';
+
+
 
 @Component({
   selector: 'app-create-post',
@@ -9,12 +13,24 @@ import { FormsModule, NgForm } from '@angular/forms';
 })
 export class CreatePostComponent {
 
+  constructor(private apiService: ApiService, private userService: UserService){}
+
   onCreate(form:NgForm){
     if (form.invalid) {
         return;
     }
 
-    console.log(form)
+    const userId = this.userService.userId
+
+    const {
+      theme,
+      title,
+      description
+    } = form.value
+
+    this.apiService.createPost(theme!,title!,description!, userId!)
+
+  //  console.log(form)
   }
 
 }
