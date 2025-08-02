@@ -20,7 +20,7 @@ export class CreatePostComponent {
         return;
     }
 
-    const userId = this.userService.userId
+    const owner = this.userService.userId
 
     const {
       theme,
@@ -28,9 +28,14 @@ export class CreatePostComponent {
       description
     } = form.value
 
-    this.apiService.createPost(theme!,title!,description!, userId!)
+    // console.log('Properties from create form are:', theme, title, description)
 
-  //  console.log(form)
+    console.log('UserId is:', owner)
+
+    // this.apiService.createPost(theme, title, description, owner).subscribe((post) => {
+    //   console.log('Post is:', post)
+    // })
+    
   }
 
 }
