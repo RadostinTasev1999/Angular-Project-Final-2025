@@ -20,7 +20,7 @@ export class ApiService {
     
   }
 
-  createPost(theme:string, title: string, description: string, userId: string){
+  createPost(theme:string, title: string, description: string, userId: string | undefined){
 
     const { apiUrl } = environment
 
