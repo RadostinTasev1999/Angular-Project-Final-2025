@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UserService } from '../user.service';
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-register',
@@ -20,10 +21,10 @@ export class RegisterComponent {
     })
   })
 
-  constructor(private userService: UserService){}
+  constructor(private userService: UserService, private router: Router){}
 
   onRegister(){
-    debugger
+    
     if (this.registerForm.invalid) {
       return;
     }
@@ -33,10 +34,17 @@ export class RegisterComponent {
       username,
       passGroup: {password, rePassword} = {}
     } = this.registerForm.value 
-
-    return this.userService.register(email!,username!,tel!,password!,rePassword!).subscribe((user) => {
-        console.log('User from DB is', user)
-    })
+      debugger
+     this.userService.register(email!,username!,tel!,password!,rePassword!).subscribe({
+        next: (user) => {
+          console.log('User registered!')
+         this.router.navigate(['/posts'])
+        },
+        error: (err) => {
+          console.error('Registration failed:', err)
+        }
+     })
+        
  
   }
 
