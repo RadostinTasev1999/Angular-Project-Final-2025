@@ -17,10 +17,10 @@ export const appInterceptor: HttpInterceptorFn = (req,next) => {
             withCredentials: true
         })
     }
-
+    debugger
     const errorMsgService = inject(ErrorMsgService)
     const router = inject(Router)
-
+    debugger
     return next(req)
             .pipe(
                 catchError((err) => {
