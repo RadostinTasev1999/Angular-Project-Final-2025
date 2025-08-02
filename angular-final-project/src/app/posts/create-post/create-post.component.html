@@ -4,16 +4,37 @@
     <h1 class="h3 mb-3 fw-normal">Create Post</h1>
 
     <div class="form-floating mb-3">
-      <input type="text" class="form-control" id="floatingTheme" placeholder="Enter Theme" ngModel  #theme="ngModel">
+      <input 
+      type="text" 
+      name="theme"
+      class="form-control" 
+      id="floatingTheme" 
+      placeholder="Enter Theme" 
+      ngModel  
+      #theme="ngModel">
       <label for="floatingTheme">Theme</label>
     </div>
     <div class="form-floating mb-3">
-      <input type="text" class="form-control" id="floatingTitle" placeholder="Enter Title" ngModel  #title="ngModel">
+      <input 
+      type="text" 
+      name="title"
+      class="form-control" 
+      id="floatingTitle" 
+      placeholder="Enter Title" 
+      ngModel  
+      #title="ngModel">
       <label for="floatingTitle">Title</label>
     </div>
 
     <div class="form-floating mb-3">
-      <textarea class="form-control" id="floatingDesc" placeholder="Text" ngModel #description="ngModel"></textarea>
+      <textarea 
+      class="form-control" 
+      name="description"
+      id="floatingDesc"
+      placeholder="Text" 
+      ngModel 
+      #description="ngModel"
+      ></textarea>
       <label for="floatingDesc">Description</label>
     </div>
 
