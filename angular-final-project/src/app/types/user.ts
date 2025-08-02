@@ -1,8 +1,8 @@
 export interface UserForAuth {
-    firstName: string,
-    lastName:string,
-    email:string,
-    phoneNumber: string,
+    username: string,
+    email: string,
+    tel: string,
     password: string,
+    rePassword?: string,
     _id: string
 }
