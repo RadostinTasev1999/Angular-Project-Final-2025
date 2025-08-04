@@ -1,6 +1,7 @@
 export interface Post {
     theme: string,
     title:string,
-    date:string,
-    description: string
+    description: string,
+    owner: string
+    _id: string
 }
