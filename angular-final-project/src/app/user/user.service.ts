@@ -26,10 +26,10 @@ export class UserService{
     return !!this.user
   }
 
-  get userId():string | undefined{
+  // get userId():string | undefined{
 
-    return this.user?._id
-  }
+  //   return this.user?._id
+  // }
 
   get username():string | undefined{
 
