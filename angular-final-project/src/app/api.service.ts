@@ -22,7 +22,7 @@ export class ApiService {
 
   createPost(theme:string, title: string, description: string, userId: string | undefined){
 
-    const { apiUrl } = environment
+    const API = '/api'
 
     const payload = {
       theme,
@@ -31,7 +31,15 @@ export class ApiService {
       userId
     }
 
-    return this.http.post<Post>(`${apiUrl}/posts`, payload)
+    return this.http.post<Post>(`${API}/posts`, payload)
+
+  }
+
+  getPostId(postId:string) {
+
+    const { apiUrl } = environment
+
+    return this.http.get<Post>(`${apiUrl}/posts/${postId}`)
 
   }
 
