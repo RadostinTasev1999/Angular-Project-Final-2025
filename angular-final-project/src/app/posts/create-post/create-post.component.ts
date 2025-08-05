@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { ApiService } from '../../api.service';
 import { UserService } from '../../user/user.service';
+import { Router } from '@angular/router';
 
 
 
@@ -13,14 +14,14 @@ import { UserService } from '../../user/user.service';
 })
 export class CreatePostComponent {
 
-  constructor(private apiService: ApiService, private userService: UserService){}
+  constructor(private apiService: ApiService, private userService: UserService, private router: Router){}
 
   onCreate(form:NgForm){
     if (form.invalid) {
         return;
     }
 
-    const owner = this.userService.userId
+    const owner = this.userService.user?._id
 
     const {
       theme,
@@ -29,12 +30,12 @@ export class CreatePostComponent {
     } = form.value
 
     // console.log('Properties from create form are:', theme, title, description)
-
+    debugger
     console.log('UserId is:', owner)
 
-    // this.apiService.createPost(theme, title, description, owner).subscribe((post) => {
-    //   console.log('Post is:', post)
-    // })
+    this.apiService.createPost(theme,title,description,owner).subscribe(() => {
+        this.router.navigate(['/posts'])
+    })
     
   }
 
