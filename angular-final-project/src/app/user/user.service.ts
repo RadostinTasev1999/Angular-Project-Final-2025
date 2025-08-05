@@ -20,6 +20,13 @@ export class UserService{
   user: UserForAuth | null = null;
   userSubscription: Subscription | null = null;
 
+  
+
+  constructor(private http: HttpClient) {
+     this.user$.subscribe(user => {
+      this.user = user;
+    })
+  }
 
   get isLoggedIn(): boolean{
   //  console.log('User is:', this.user)
@@ -37,11 +44,15 @@ export class UserService{
 
   }
 
-  constructor(private http: HttpClient) {
-     this.user$.subscribe(user => {
-      this.user = user;
-    })
+  getUser(userId:string) {
+
+    const API = '/api'
+    debugger
+    return this.http.get<UserForAuth>(`${API}/users/${userId}`)
+
   }
+
+  
 
  
 
