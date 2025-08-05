@@ -8,15 +8,25 @@ import { PostsComponent } from './posts/posts/posts.component';
 import { ProfileComponent } from './user/profile/profile.component';
 import { CreatePostComponent } from './posts/create-post/create-post.component';
 import { ErrorComponent } from './error/error.component';
+import { AuthGuard } from './guards/auth.guard';
+import { MainComponent } from './main/main.component';
+import { PostDetailsComponent } from './posts/post-details/post-details.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: 'home', component: HomeComponent },
     { path: 'login', component: LoginComponent},
     { path: 'register', component: RegisterComponent },
-    { path: 'posts', component: PostsComponent},
+    // Posts routing:
+    { path: 'posts', children: [
+    { path: '', component: MainComponent},
+    { path: ':postId', component: PostDetailsComponent}
+    ] },
     { path: 'profile', component: ProfileComponent},
-    { path: 'create', component: CreatePostComponent },
+    { path: 'create',
+      component: CreatePostComponent,
+      canActivate: [AuthGuard]
+    },
     { path: '404', component: ErrorComponent },
     { path: '**', redirectTo: '/404'}
 ];
