@@ -1,0 +1,61 @@
+<div class="blog-single gray-bg">
+        <div class="container">
+            <div class="row align-items-start">
+                <div class="col-lg-8 m-15px-tb">
+                    <article class="article">
+                        
+                        <div class="article-title">
+                            <h6>
+                            <span class="badge bg-primary text-white px-3 py-2 fs-6 rounded-pill">
+                                 {{post.theme}}
+                            </span>
+                            </h6>
+                            <h2 class="fw-bold mb-3 text-dark">{{post.title}}</h2>
+                            <div class="media">
+                                <div class="d-flex align-items-center gap-3 p-3 bg-light rounded shadow-sm">
+                                <img src="https://images.unsplash.com/photo-1750535135659-7a0c8878a8fe?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="User Avatar" class="rounded-circle" width="40" height="40">
+                                <div>
+                                 <div class="fw-bold text-primary">{{postCreator?.username}}</div>
+                                 <div class="text-muted small">{{postCreator?.email}}</div>
+                            </div>
+                            </div>
+
+                            </div>
+                        </div>
+                        <div class="article-content p-3 bg-white rounded shadow-sm">
+                        <p class="mb-0 text-body fs-6 lh-base">
+                                 {{post.description}}
+                        </p>
+                        </div>               
+                    </article>
+                    <div class="contact-form article-comment mt-5">
+                        <h1 class="fw-bold mb-4 text-primary fs-4">Leave a Reply</h1>
+                        <form id="contact-form" method="POST">
+                            <div class="row gap-2">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input name="Name" id="name" placeholder="Name *" class="form-control" type="text">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input name="Email" id="email" placeholder="Email *" class="form-control" type="email">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <textarea name="message" id="message" placeholder="Your message *" rows="4" class="form-control"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="send">
+                                        <button class="px-btn theme"><span>Submit</span> <i class="arrow"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
