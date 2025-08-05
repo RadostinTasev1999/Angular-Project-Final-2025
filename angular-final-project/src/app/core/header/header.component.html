@@ -12,7 +12,7 @@
       </ul>
       @if(isLoggedIn){
       <div class="col-md-3 text-end">
-        <button (click)="onLogout()" type="button" class="btn btn-outline-primary me-2">Logout</button>
+        <a (click)="onLogout()" class="btn btn-outline-primary me-2">Logout</a>
         <button routerLink="/profile" type="button" class="btn btn-primary">{{firstName}}'s Profile</button>
       </div>
       } @else{
