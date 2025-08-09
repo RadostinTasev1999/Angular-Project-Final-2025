@@ -22,18 +22,20 @@ export class CreatePostComponent {
     }
 
     const owner = this.userService.user?._id
+    // logged in user id
 
     const {
       theme,
       title,
-      description
+      description,
+      image
     } = form.value
 
     // console.log('Properties from create form are:', theme, title, description)
     debugger
     console.log('UserId is:', owner)
 
-    this.apiService.createPost(theme,title,description,owner).subscribe(() => {
+    this.apiService.createPost(theme,title,description, image,owner).subscribe(() => {
         this.router.navigate(['/posts'])
     })
     
