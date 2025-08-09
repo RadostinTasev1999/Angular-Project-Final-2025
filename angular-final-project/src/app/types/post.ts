@@ -3,5 +3,6 @@ export interface Post {
     title:string,
     description: string,
     owner: string,
+    image: string,
     _id: string
 }
