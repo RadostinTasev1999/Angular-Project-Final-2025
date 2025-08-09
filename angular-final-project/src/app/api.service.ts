@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from './environment/environment.development';
 import { Post } from './types/post';
+import { Comment } from './types/comment'
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,7 @@ export class ApiService {
     
   }
 
-  createPost(theme:string, title: string, description: string, userId: string | undefined){
+  createPost(theme:string, title: string, description: string,image: string, userId: string | undefined){
 
     const API = '/api'
 
@@ -28,6 +29,7 @@ export class ApiService {
       theme,
       title,
       description,
+      image,
       userId
     }
 
@@ -41,6 +43,22 @@ export class ApiService {
 
     return this.http.get<Post>(`${apiUrl}/posts/${postId}`)
 
+  }
+
+  createPostComment(email:string, message:string, name: string, postId: string,commentOwnerId:string | undefined){
+
+    const data = { email, message, name }
+
+    const API = '/api'
+    debugger
+    return this.http.post<Comment>(`${API}/posts/${postId}/comments`, {...data, commentOwnerId})
+
+  }
+
+  deletePost(postId: string){
+    const API = '/api'
+
+    return this.http.delete(`${API}/posts/${postId}`)
   }
 
 
