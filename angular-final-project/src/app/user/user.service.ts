@@ -44,9 +44,10 @@ export class UserService{
 
   }
 
-  getUser(userId:string) {
+  getUser(userId:string | undefined) {
 
     const API = '/api'
+    console.log('User ID is:', userId)
     debugger
     return this.http.get<UserForAuth>(`${API}/users/${userId}`)
 
