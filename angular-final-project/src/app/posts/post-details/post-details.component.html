@@ -50,12 +50,16 @@
                             </article>
                         } @else{
                             <div class="card shadow-sm my-4">
+                                <div class="card-header">
+                                    <h5 class="mb-0">Edit Post</h5>
+                                </div>
+
                                 <div class="card-body">
-                                    <form id="editPostForm">
+                                    <form id="editPostForm" #editPostForm="ngForm" (ngSubmit)="editPost(editPostForm)">
                                         <!-- Theme -->
                                         <div class="mb-3">
                                             <label for="postTheme" class="form-label">Theme</label>
-                                            <select class="form-select" id="postTheme" name="theme">
+                                            <select [(ngModel)]="post.theme" class="form-select" id="postTheme" name="theme" ngModel #theme="ngModel">
                                                 <option selected>Choose theme</option>
                                                 <option value="travel">Travel</option>
                                                 <option value="lifestyle">Lifestyle</option>
@@ -68,21 +72,21 @@
                                         <!-- Title -->
                                         <div class="mb-3">
                                             <label for="postTitle" class="form-label">Title</label>
-                                            <input type="text" class="form-control" id="postTitle" name="title" placeholder="Enter title" required>
+                                            <input [(ngModel)]="post.title" type="text" class="form-control" id="postTitle" name="title" placeholder="Enter title" ngModel #title="ngModel" required>
                                         </div>
                             
                                         <!-- Image -->
                                         <div class="mb-3">
                                             <label for="postImage" class="form-label">Image URL</label>
-                                            <input type="url" class="form-control" id="postImage" name="image"
-                                                placeholder="https://example.com/image.jpg">
+                                            <input [(ngModel)]="post.image" type="url" class="form-control" id="postImage" name="image"
+                                                placeholder="https://example.com/image.jpg" ngModel #image="ngModel">
                                         </div>
                             
                                         <!-- Content -->
                                         <div class="mb-3">
                                             <label for="postContent" class="form-label">Content</label>
-                                            <textarea class="form-control" id="postContent" name="content" rows="6"
-                                                placeholder="Write your content here..." required></textarea>
+                                            <textarea [(ngModel)]="post.description" class="form-control" id="postContent" name="content" rows="6"
+                                                placeholder="Write your content here..." ngModel #content="ngModel" required></textarea>
                                         </div>
                             
                                         <!-- Actions -->
