@@ -61,5 +61,20 @@ export class ApiService {
     return this.http.delete(`${API}/posts/${postId}`)
   }
 
+  editPost(content:string,image:string,theme:string,title:string,id: string){
+    
+    const API = '/api'
+
+    const payload = {
+      content,
+      image,
+      theme,
+      title
+    } 
+    debugger
+    return this.http.patch(`${API}/posts/${id}`, payload)
+
+  }
+
 
 }
