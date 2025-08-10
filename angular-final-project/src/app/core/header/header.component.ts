@@ -28,6 +28,7 @@ export class HeaderComponent {
     // call userService
     this.userService.logout().subscribe((message) => {
         console.log(message)
+        debugger
         this.router.navigate(['/home'])
     })
   }

@@ -10,6 +10,7 @@ export class ErrorMsgService {
   public apiError$ = this.apiError$$.asObservable()
 
   setError(error:any): void{
+    debugger
     this.apiError$$.next(error)
   }
 }
