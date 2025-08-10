@@ -17,17 +17,20 @@ export const appInterceptor: HttpInterceptorFn = (req,next) => {
             withCredentials: true
         })
     }
-    debugger
+        debugger
     const errorMsgService = inject(ErrorMsgService)
     const router = inject(Router)
-    debugger
+    
     return next(req)
             .pipe(
                 catchError((err) => {
+                    debugger
                     if (err.status === 401) {
+                        debugger
                         router.navigate(['/login'])
                     } else{
                         errorMsgService.setError(err)
+                        debugger
                         router.navigate(['/error'])
                     }
 
