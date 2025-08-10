@@ -7,6 +7,7 @@ import { UserForAuth } from '../../types/user';
 import { FormsModule,NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-post-details',
   imports: [FormsModule],
@@ -17,7 +18,7 @@ export class PostDetailsComponent implements OnInit {
 
   postId: string = '';
   post = {} as Post
-  postOwner:string = ''
+  postOwner:string | undefined = ''
   postCreator: UserForAuth | null = null
   isPostOwner: boolean = false;
   isEditMode: boolean = false;
@@ -29,6 +30,14 @@ export class PostDetailsComponent implements OnInit {
   get isAuthenticated(): boolean{
 
     return this.userService.isLoggedIn
+  }
+
+  postData: Post = {
+      theme: 'technology',
+      title: 'Hellet Packard',
+      description: 'Sample description',
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTc9APxkj0xClmrU3PpMZglHQkx446nQPG6lA&s'
+
   }
 
   ngOnInit(): void {
@@ -87,6 +96,45 @@ export class PostDetailsComponent implements OnInit {
      window.alert({message})
     this.router.navigate(['/posts'])
     })
+  }
+
+  editPost(form:NgForm){
+    if (form.invalid) {
+        return;
+    }
+
+    const id = this.postId
+
+    const {
+      content,
+      image,
+      theme,
+      title
+    } = form.value
+
+    console.log('Form properties:',{
+        content,
+        image,
+        theme,
+        title
+    })
+    debugger
+    this.apiService.editPost(content,image,theme,title,id).subscribe((message) => {
+        console.log('Message:', message)
+        debugger
+        form.reset()
+        this.toggleEditMode()
+        this.router.navigate([`/posts/${id}`]).then(() => {
+            this.apiService.getPostId(id).subscribe((post) => {
+              this.post = post
+            })
+        })
+    })
+    
+
+
+
+
   }
 
   onEdit(){
