@@ -76,5 +76,13 @@ export class ApiService {
 
   }
 
+  getPostComments(postId: string){
+
+    const API = '/api'
+
+    return this.http.get<Comment[]>(`${API}/posts/${postId}/comments`)
+
+  }
+
 
 }
