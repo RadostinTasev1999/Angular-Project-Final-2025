@@ -11,6 +11,7 @@ import { ErrorComponent } from './error/error.component';
 import { AuthGuard } from './guards/auth.guard';
 import { MainComponent } from './main/main.component';
 import { PostDetailsComponent } from './posts/post-details/post-details.component';
+import { ErrorMsgComponent } from './core/error-msg/error-msg.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -27,6 +28,7 @@ export const routes: Routes = [
       component: CreatePostComponent,
       canActivate: [AuthGuard]
     },
+    { path: 'error', component: ErrorMsgComponent},
     { path: '404', component: ErrorComponent },
     { path: '**', redirectTo: '/404'}
 ];
