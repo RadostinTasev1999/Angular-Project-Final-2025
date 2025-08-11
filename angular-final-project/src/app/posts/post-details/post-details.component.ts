@@ -6,6 +6,7 @@ import { UserService } from '../../user/user.service';
 import { UserForAuth } from '../../types/user';
 import { FormsModule,NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Comment } from '../../types/comment';
 
 
 @Component({
@@ -22,7 +23,8 @@ export class PostDetailsComponent implements OnInit {
   postCreator: UserForAuth | null = null
   isPostOwner: boolean = false;
   isEditMode: boolean = false;
-  
+  postComments: Comment[] = []
+  showComments: boolean = false;
   
 
   constructor(private route: ActivatedRoute, private apiService: ApiService, private userService: UserService, private router: Router){}
@@ -60,9 +62,7 @@ export class PostDetailsComponent implements OnInit {
         // verify if logged in user is the post owner
         this.isPostOwner = this.userService.user?._id === this.postOwner
 
-      })
-
-          
+      })     
 
   }
 
@@ -79,14 +79,36 @@ export class PostDetailsComponent implements OnInit {
     } = commentForm.value
       console.log('Comment form props are:', email, message, name)
       debugger
+      const id = this.postId
       const commentOwnerId = this.userService.user?._id
       debugger
-      this.apiService.createPostComment(email,message,name,this.postId,commentOwnerId).subscribe((message) => {
+      this.apiService.createPostComment(email,message,name,id,commentOwnerId).subscribe((message) => {
           console.log('Message is:',message)
       })
 
     commentForm.reset()
   }
+
+  
+
+  showPostComments(){
+
+        const postId = this.postId
+
+        this.apiService.getPostComments(postId).subscribe((comments) => {
+          this.postComments = comments
+          this.showComments = true
+      })
+    
+  }
+
+  hideComments(){
+  
+    this.showComments = false; 
+
+  }
+
+  
 
   onDelete(){
 
