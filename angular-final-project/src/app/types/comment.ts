@@ -5,5 +5,6 @@ export interface Comment {
     post?: string,
     owner?:string,
     created_at?: string,
+    likedList?: [],
     _id?: string
 }
