@@ -25,7 +25,8 @@ export class PostDetailsComponent implements OnInit {
   isEditMode: boolean = false;
   postComments: Comment[] = []
   showComments: boolean = false;
-  
+  toggleDislike: boolean = false;
+  isCommentOwner: boolean = false;
 
   constructor(private route: ActivatedRoute, private apiService: ApiService, private userService: UserService, private router: Router){}
 
@@ -102,6 +103,12 @@ export class PostDetailsComponent implements OnInit {
     
   }
 
+   commentOwner(ownerId:string | undefined): boolean{
+    debugger
+    return this.userService.user?._id === ownerId
+
+  }
+
   hideComments(){
   
     this.showComments = false; 
@@ -171,5 +178,17 @@ export class PostDetailsComponent implements OnInit {
     this.isEditMode = !this.isEditMode
   }
 
+  onLike(_id: string | undefined){
+    
+    const commentId = _id
+    const postId = this.postId
+    const userId = this.userService.user?._id
+    debugger
+    this.apiService.likeComment(commentId,postId,userId).subscribe((message) => {
+      console.log({message})
+    })
+
+    // this.toggleDislike = true;
+  }
 
 }
