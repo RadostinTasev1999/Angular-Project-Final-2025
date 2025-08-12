@@ -20,8 +20,8 @@
           <p class="card-text mb-auto">{{post.description}}</p>
           <a routerLink="{{post._id}}" class="stretched-link">Continue reading</a>
         </div>
-        <div class="col-auto d-none d-lg-block">
-            <img [src]="post.image" alt="" class="img-fluid">
+        <div class="col-auto d-none d-lg-flex justify-content-center align-items-center border rounded p-2">
+            <img [src]="post.image" alt="" class="img-fluid" style="max-height:450px;">
         </div>
       </div>
     </div>
