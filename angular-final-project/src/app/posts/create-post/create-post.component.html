@@ -3,8 +3,17 @@
     <img class="mb-4" src="https://getbootstrap.com/docs/5.0/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
     <h1 class="h3 mb-3 fw-normal">Create Post</h1>
 
-    <div class="form-floating mb-3">
-      <input 
+    <div class="mb-3">
+      <label for="postTheme" class="form-label text-dark fw-semibold">Theme</label>
+      <select class="form-select" id="postTheme" name="theme" ngModel #theme="ngModel">
+        <!-- <option selected>Choose theme</option> -->
+        <option value="travel">Travel</option>
+        <option value="lifestyle">Lifestyle</option>
+        <option value="technology">Technology</option>
+        <option value="culture">Culture</option>
+        <option value="food">Food</option>
+      </select>
+      <!-- <input 
       type="text" 
       name="theme"
       class="form-control" 
@@ -12,7 +21,7 @@
       placeholder="Enter Theme" 
       ngModel  
       #theme="ngModel">
-      <label for="floatingTheme">Theme</label>
+      <label for="floatingTheme">Theme</label> -->
     </div>
     <div class="form-floating mb-3">
       <input 
@@ -34,7 +43,7 @@
       placeholder="Insert Image" 
       ngModel  
       #image="ngModel">
-      <label for="floatingImage">Image</label>
+      <label for="floatingImage">Image URL</label>
     </div>
 
     <div class="form-floating mb-3">
