@@ -84,5 +84,13 @@ export class ApiService {
 
   }
 
+  likeComment(commentId:string | undefined, postId: string | undefined,userId: string | undefined){
+
+    const API = '/api'
+    debugger
+    return this.http.post<Comment>(`${API}/posts/${postId}/comments/${commentId}`,{userId})
+
+  }
+
 
 }
