@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UserService } from '../user.service';
 import { Router } from '@angular/router'
+import { emailValidator } from '../../utils/email.validator';
+import { DOMAINS } from '../../constants'
+import { matchPasswordsValidator } from '../../utils/match-passwords.validator';
 
 @Component({
   selector: 'app-register',
@@ -13,12 +16,20 @@ export class RegisterComponent {
 
   registerForm = new FormGroup({
     username: new FormControl('',[Validators.minLength(5), Validators.required]),
-    email: new FormControl('', [Validators.minLength(5), Validators.required]),
-    tel: new FormControl('', [Validators.required]),
-    passGroup: new FormGroup({
+    email: new FormControl('', [Validators.required, emailValidator(DOMAINS)]),
+    tel: new FormControl('', [Validators.required, Validators.minLength(11)]),
+    passGroup: new FormGroup(
+      {
+
         password: new FormControl('',[Validators.required, Validators.minLength(5)]),
+
         rePassword: new FormControl('', [Validators.required])
-    })
+
+      },
+      {
+        validators: [matchPasswordsValidator('password', 'rePassword')]
+      }
+  )
   })
 
   constructor(private userService: UserService, private router: Router){}
@@ -46,6 +57,35 @@ export class RegisterComponent {
      })
         
  
+  }
+
+  isFieldTextMissing(controlName:string){
+    return (
+      this.registerForm.get(controlName)?.touched 
+                       && 
+      this.registerForm.get(controlName)?.hasError('required')
+    )
+  }
+
+  isNotMinLength(controlName: string){
+
+    return(
+      this.registerForm.get(controlName)?.touched
+                      &&
+      this.registerForm.get(controlName)?.hasError('minlength')
+    )
+  }
+
+  get isEmailNotValid(){
+    return (
+      this.registerForm.get('email')?.touched 
+                    &&
+      this.registerForm.get('email')?.hasError('emailValidator')
+    )
+  }
+
+  get passGroup(){
+    return this.registerForm.get('passGroup')
   }
 
 }
