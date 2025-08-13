@@ -12,6 +12,12 @@
       formControlName="username"
       > 
       <label for="floatingInput">Username</label>
+      @if(isFieldTextMissing('username')){
+          <p>Username is required!</p>
+      }
+      @if(isNotMinLength('username')){
+          <p>Username must be at least 5 characters long!</p>
+      }
     </div>
 
     <div class="form-floating mb-3">
@@ -23,6 +29,12 @@
       formControlName="email"
       >
       <label for="floatingInput">Email address</label>
+      @if(isFieldTextMissing('email')){
+          <p>Email is required!</p>
+      }
+      @if(isEmailNotValid){
+          <p>Email is not valid!</p>
+      }
     </div>
 
     <div class="form-floating mb-3">
@@ -34,10 +46,16 @@
       formControlName="tel"
       >
       <label for="floatingInput">Phone number</label>
+      @if(isFieldTextMissing('tel')){
+        <p>Phone number is required!</p>
+      }
+      @if(isNotMinLength('tel')){
+        <p>Phone number must be at least 10 characters long!</p>
+      }
     </div>
 
-    <div formGroupName="passGroup">
- <div class="form-floating mb-3">
+<div formGroupName="passGroup">
+   <div class="form-floating mb-3">
       <input 
       type="password" 
       class="form-control" 
@@ -46,6 +64,16 @@
       formControlName="password"
       >
       <label for="floatingPassword">Password</label>
+      @if(passGroup?.get('password')?.touched){
+        <div>
+          @if(passGroup?.get('password')?.hasError('required')){
+              <p>Password is required!</p>
+          }
+          @if(passGroup?.get('password')?.hasError('minlength')){
+            <p>Password must be at least 5 characters long</p>
+          }
+        </div>
+      }
     </div>
 
     <div class="form-floating mb-3">
@@ -57,11 +85,23 @@
       formControlName="rePassword"
       >
       <label for="floatingInput">Re-Password</label>
+      @if(passGroup?.get('rePassword')?.touched){
+          <div>
+      
+            @if(
+              passGroup?.errors?.['matchPasswordsValidator']
+                              ||
+              passGroup?.get('rePassword')?.hasError('required')
+              ){
+                  <p>Passwords do not match!</p>
+            }
+          </div>
+      }
     </div>
     </div>
 
    
 
-    <button class="w-100 btn btn-lg btn-primary" type="submit">Register</button>
+    <button class="w-100 btn btn-lg btn-primary" type="submit" [disabled]="!registerForm.valid">Register</button>
   </form>
 </main>
