@@ -72,27 +72,54 @@
                                         <!-- Title -->
                                         <div class="mb-3">
                                             <label for="postTitle" class="form-label">Title</label>
-                                            <input [(ngModel)]="post.title" type="text" class="form-control" id="postTitle" name="title" placeholder="Enter title" ngModel #title="ngModel" required>
+                                            <input [(ngModel)]="post.title" type="text" class="form-control" id="postTitle" name="title" placeholder="Enter title" ngModel #title="ngModel" required minlength="5">
+                                            @if(title.touched){
+                                                <div>
+                                                    @if(title.hasError('required')){
+                                                        <p>Title is required!</p>
+                                                    }
+                                                    @if(title.hasError('minlength')){
+                                                        <p>Title must be at least 5 characters long!</p>
+                                                    }
+                                                </div>
+                                            }
                                         </div>
                             
                                         <!-- Image -->
                                         <div class="mb-3">
                                             <label for="postImage" class="form-label">Image URL</label>
                                             <input [(ngModel)]="post.image" type="url" class="form-control" id="postImage" name="image"
-                                                placeholder="https://example.com/image.jpg" ngModel #image="ngModel">
+                                                placeholder="https://example.com/image.jpg" ngModel #image="ngModel" required>
+                                                @if(image.touched){
+                                                    <div>
+                                                        @if(image.hasError('required')){
+                                                            <p>Image is required!</p>
+                                                        }
+                                                    </div>
+                                                }
                                         </div>
                             
                                         <!-- Content -->
                                         <div class="mb-3">
                                             <label for="postContent" class="form-label">Content</label>
                                             <textarea [(ngModel)]="post.description" class="form-control" id="postContent" name="content" rows="6"
-                                                placeholder="Write your content here..." ngModel #content="ngModel" required></textarea>
+                                                placeholder="Write your content here..." ngModel #content="ngModel" required minlength="5"></textarea>
+                                                @if(content.touched){
+                                                    <div>
+                                                        @if(content.hasError('required')){
+                                                            <p>Content is required!</p>
+                                                        }
+                                                        @if(content.hasError('minlength')){
+                                                            <p>Content must be at least 5 characters long!</p>
+                                                        }
+                                                    </div>
+                                                }
                                         </div>
                             
                                         <!-- Actions -->
                                         <div class="d-flex justify-content-end">
                                             <button (click)="onCancel()" type="button" class="btn btn-secondary me-2" id="cancelEdit">Cancel</button>
-                                            <button type="submit" class="btn btn-primary">Save Changes</button>
+                                            <button type="submit" class="btn btn-primary" [disabled]="!editPostForm.form.valid">Save Changes</button>
                                         </div>
                                     </form>
                                 </div>
@@ -172,22 +199,49 @@
                             <div class="row gap-2">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <input name="name" id="name" placeholder="Name *" class="form-control" type="text" ngModel #name="ngModel">
+                                        <input name="name" id="name" placeholder="Name *" class="form-control" type="text" ngModel #name="ngModel" required>
                                     </div>
+                                    @if(name.touched){
+                                        <div>
+                                            @if(name.hasError('required')){
+                                                <p>Name is required!</p>
+                                            }
+                                        </div>
+                                    }
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <input name="email" id="email" placeholder="Email *" class="form-control" type="email" ngModel #email="ngModel">
+                                        <input name="email" [appEmail]="domains" id="email" placeholder="Email *" class="form-control" type="email" ngModel #email="ngModel" required>
                                     </div>
+                                        @if(email.touched){
+                                            <div>
+                                                @if(email.hasError('required')){
+                                                    <p>Email is required!</p>
+                                                }
+                                                @if(email.hasError('emailValidator')){
+                                                    <p>Email is not valid!</p>
+                                                }
+                                            </div>
+                                        }
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <textarea name="message" id="message" placeholder="Your message *" rows="4" class="form-control" ngModel #message="ngModel"></textarea>
+                                        <textarea name="message" id="message" placeholder="Your message *" rows="4" class="form-control" ngModel #message="ngModel" required minlength="5"></textarea>
                                     </div>
+                                    @if(message.touched){
+                                        <div>
+                                            @if(message.hasError('required')){
+                                                <p>Message is required!</p>
+                                            }
+                                            @if(message.hasError('minlength')){
+                                                <p>Message must be at least 5 characters long!</p>
+                                            }
+                                        </div>
+                                    }
                                 </div>
                                 <div class="col-md-12">
                                     <div class="send">
-                                        <button class="px-btn theme"><span>Submit</span> <i class="arrow"></i></button>
+                                        <button class="px-btn theme" [disabled]="!commentForm.form.valid"><span>Submit</span> <i class="arrow"></i></button>
                                     </div>
                                 </div>
                             </div>
