@@ -18,8 +18,17 @@
                                                 id="username" 
                                                 name="username" 
                                                 formControlName="username"
-                                                
                                                 required>
+                                            @if(profileForm.get('username')?.touched){
+                                                <div>
+                                                    @if(profileForm.get('username')?.hasError('required')){
+                                                        <p>Username is required!</p>
+                                                    }
+                                                    @if(profileForm.get('username')?.hasError('minlength')){
+                                                        <p>Username must be at least 6 characters long!</p>
+                                                    }
+                                                </div>
+                                            }
                                         </div>
                 
                                         <div class="mb-3">
@@ -29,9 +38,15 @@
                                                 class="form-control" 
                                                 id="position" 
                                                 name="position"
-                                                formControlName="position"
-                                                
-                                                >
+                                                formControlName="position"          
+                                                required>
+                                                @if(profileForm.get('position')?.touched){
+                                                    <div>
+                                                        @if(profileForm.get('position')?.hasError('required')){
+                                                            <p>Position is required!</p>
+                                                        }
+                                                    </div>
+                                                }
                                         </div>
                 
                                         <div class="mb-3">
@@ -42,8 +57,15 @@
                                                 id="born" 
                                                 name="born"
                                                 formControlName="born"
-                                                
+                                                required
                                                 >
+                                                @if(profileForm.get('born')?.touched){
+                                                    <div>
+                                                        @if(profileForm.get('born')?.hasError('required')){
+                                                            <p>Please enter date of birth</p>
+                                                        }
+                                                    </div>
+                                                }
                                         </div>
                 
                                         <div class="mb-3">
@@ -54,8 +76,15 @@
                                                 id="city" 
                                                 name="city"
                                                 formControlName="city"
-                                                
+                                                required
                                                 >
+                                                @if(profileForm.get('city')?.touched){
+                                                    <div>
+                                                        @if(profileForm.get('city')?.hasError('required')){
+                                                            <p>Please enter city</p>
+                                                        }
+                                                    </div>
+                                                }
                                         </div>
                 
                                         <div class="mb-3">
@@ -66,8 +95,15 @@
                                                 id="country" 
                                                 name="country"
                                                 formControlName="country"
-                                                
+                                                required
                                                 >
+                                                @if(profileForm.get('country')?.touched){
+                                                    <div>
+                                                        @if(profileForm.get('country')?.hasError('required')){
+                                                            <p>Please enter a Country</p>
+                                                        }
+                                                    </div>
+                                                }
                                         </div>
                 
                                         <div class="mb-3">
@@ -78,8 +114,17 @@
                                                 id="email" 
                                                 name="email"
                                                 formControlName="email" 
-                                                
                                                 required>
+                                                @if(profileForm.get('email')?.touched){
+                                                    <div>
+                                                        @if(profileForm.get('email')?.hasError('required')){
+                                                            <p>Please enter an email</p>
+                                                        }
+                                                        @if(profileForm.get('email')?.hasError('emailValidator')){
+                                                            <p>Please enter a valid email address</p>
+                                                        }
+                                                    </div>
+                                                }
                                         </div>
                 
                                         <div class="mb-3">
@@ -90,12 +135,22 @@
                                                 id="phone" 
                                                 name="phoneNumber"
                                                 formControlName="phoneNumber"
-                                                
+                                                required
                                                 >
+                                                @if(profileForm.get('phoneNumber')?.touched){
+                                                    <div>
+                                                        @if(profileForm.get('phoneNumber')?.hasError('required')){
+                                                            <p>Please enter a phone number!</p>
+                                                        }
+                                                        @if(profileForm.get('phoneNumber')?.hasError('minlength')){
+                                                            <p>Please enter at least 11 characters</p>
+                                                        }
+                                                    </div>
+                                                }
                                         </div>
                 
                                         <div class="d-flex justify-content-end gap-2">
-                                            <button type="submit" class="btn btn-primary">
+                                            <button type="submit" class="btn btn-primary" [disabled]="!profileForm.valid">
                                                 <i class="bi bi-save me-1"></i>Save Changes
                                             </button>
                                             <a (click)="onCancel()" class="btn btn-secondary">
