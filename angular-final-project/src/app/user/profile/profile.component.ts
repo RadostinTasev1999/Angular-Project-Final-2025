@@ -3,6 +3,8 @@ import { FormControl, FormsModule, NgForm, ReactiveFormsModule, Validators, Form
 import { UserService } from '../user.service';
 import { UserForAuth } from '../../types/user';
 import { ProfileDetails } from '../../types/profile';
+import { emailValidator } from '../../utils/email.validator';
+import { DOMAINS } from '../../constants';
 
 @Component({
   selector: 'app-profile',
@@ -33,13 +35,13 @@ export class ProfileComponent implements OnInit{
   isEditMode: boolean = false;
 
   profileForm = new FormGroup({
-    username: new FormControl('', [Validators.required]),
+    username: new FormControl('', [Validators.required, Validators.minLength(6)]),
     position: new FormControl('',[Validators.required]),
     born: new FormControl('',[Validators.required]),
     city: new FormControl('',[Validators.required]),
     country: new FormControl('',[Validators.required]),
-    email: new FormControl('', [Validators.required]),
-    phoneNumber: new FormControl('',[Validators.required])
+    email: new FormControl('', [Validators.required, emailValidator(DOMAINS)]),
+    phoneNumber: new FormControl('',[Validators.required, Validators.minLength(11)])
   })
 
   ngOnInit(): void{
