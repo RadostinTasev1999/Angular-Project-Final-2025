@@ -1,11 +1,11 @@
 <main class="form-signin w-100 m-auto" style="max-width: 330px; padding: 15px;">
-  <form #form="ngForm" (ngSubmit)="onCreate(form)">
+  <form #formCreatePost="ngForm" (ngSubmit)="onCreate(formCreatePost)">
     <img class="mb-4" src="https://getbootstrap.com/docs/5.0/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
     <h1 class="h3 mb-3 fw-normal">Create Post</h1>
 
     <div class="mb-3">
       <label for="postTheme" class="form-label text-dark fw-semibold">Theme</label>
-      <select class="form-select" id="postTheme" name="theme" ngModel #theme="ngModel">
+      <select class="form-select" id="postTheme" name="theme" ngModel #theme="ngModel" required>
         <!-- <option selected>Choose theme</option> -->
         <option value="travel">Travel</option>
         <option value="lifestyle">Lifestyle</option>
@@ -13,15 +13,13 @@
         <option value="culture">Culture</option>
         <option value="food">Food</option>
       </select>
-      <!-- <input 
-      type="text" 
-      name="theme"
-      class="form-control" 
-      id="floatingTheme" 
-      placeholder="Enter Theme" 
-      ngModel  
-      #theme="ngModel">
-      <label for="floatingTheme">Theme</label> -->
+      @if(theme.touched){
+        <div>
+          @if(theme.hasError('required')){
+            <p>Theme is required!</p>
+          }
+        </div>
+      }
     </div>
     <div class="form-floating mb-3">
       <input 
@@ -31,8 +29,20 @@
       id="floatingTitle" 
       placeholder="Enter Title" 
       ngModel  
-      #title="ngModel">
+      #title="ngModel"
+      required
+      minlength="5">
       <label for="floatingTitle">Title</label>
+      @if(title.touched){
+        <div>
+          @if(title.hasError('required')){
+            <p>Title is required!</p>
+          }
+          @if(title.hasError('minlength')){
+            <p>Title must be at least 5 characters long!</p>
+          }
+        </div>
+      }
     </div>
     <div class="form-floating mb-3">
       <input 
@@ -42,8 +52,16 @@
       id="floatingImage" 
       placeholder="Insert Image" 
       ngModel  
-      #image="ngModel">
+      #image="ngModel"
+      required>
       <label for="floatingImage">Image URL</label>
+      @if(image.touched){
+        <div>
+          @if(image.hasError('required')){
+            <p>Image URL is required!</p>
+          }
+        </div>
+      }
     </div>
 
     <div class="form-floating mb-3">
@@ -54,10 +72,22 @@
       placeholder="Text" 
       ngModel 
       #description="ngModel"
-      ></textarea>
+      required 
+      minlength="10">
+    </textarea>
       <label for="floatingDesc">Description</label>
+      @if(description.touched){
+        <div>
+          @if(description.hasError('required')){
+            <p>Description is required!</p>
+          }
+          @if(description.hasError('minlength')){
+              <p>Description must be at least 10 characters long!</p>
+          }
+        </div>
+      }
     </div>
 
-    <button class="w-100 btn btn-lg btn-primary" type="submit">Create Post</button>
+    <button class="w-100 btn btn-lg btn-primary" type="submit" [disabled]="!formCreatePost.form.valid">Create Post</button>
   </form>
 </main>
