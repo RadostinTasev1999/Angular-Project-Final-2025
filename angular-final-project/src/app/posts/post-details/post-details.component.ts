@@ -7,16 +7,18 @@ import { UserForAuth } from '../../types/user';
 import { FormsModule,NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Comment } from '../../types/comment';
-
+import { EmailDirective } from '../../directives/email.directive';
+import { DOMAINS } from '../../constants';
 
 @Component({
   selector: 'app-post-details',
-  imports: [FormsModule],
+  imports: [FormsModule, EmailDirective],
   templateUrl: './post-details.component.html',
   styleUrl: './post-details.component.css'
 })
 export class PostDetailsComponent implements OnInit {
-
+  
+  domains = DOMAINS
   postId: string = '';
   post = {} as Post
   postOwner:string | undefined = ''
