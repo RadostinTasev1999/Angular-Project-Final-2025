@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from './environment/environment.development';
 import { Post } from './types/post';
 import { Comment } from './types/comment'
+import { Podcast } from './types/podcast';
 
 @Injectable({
   providedIn: 'root'
@@ -89,6 +90,22 @@ export class ApiService {
     const API = '/api'
     debugger
     return this.http.post<Comment>(`${API}/posts/${postId}/comments/${commentId}`,{userId})
+
+  }
+
+  getPodcasts(){
+
+      const API = '/api'
+      debugger
+    return this.http.get<Podcast[]>(`${API}/podcasts`)
+
+  }
+
+  votePodcast(podcastId: string, userId: string | undefined){
+
+    const API = '/api'
+
+    return this.http.post<Podcast>(`${API}/podcasts/${podcastId}`,{userId: userId})
 
   }
 
