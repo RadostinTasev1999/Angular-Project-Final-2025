@@ -4,6 +4,8 @@ export interface Post {
     description: string,
     owner?: string,
     image: string,
-    _id?: string
+    _id?: string,
+    likedList: Array<Object>,
+    created_at: string
 }
 
