@@ -6,7 +6,8 @@ import { BehaviorSubject } from 'rxjs';
 import { throwError } from 'rxjs';
 import { tap, Subscription } from 'rxjs'
 import { UserForAuth } from '../types/user';
-import { environment } from '../environment/environment.development';
+//import { environment } from '../environment/environment.development';
+
 
 @Injectable({
   providedIn: 'root'
@@ -23,8 +24,28 @@ export class UserService{
   
 
   constructor(private http: HttpClient) {
-     this.user$.subscribe(user => {
-      this.user = user;
+    
+    if (typeof window !== 'undefined' && window.localStorage) {
+       
+      const localStorageUser = localStorage.getItem(this.USER_KEY)
+        
+        if (localStorageUser) {
+          try {
+            debugger
+          const user = JSON.parse(localStorageUser) as UserForAuth
+          debugger
+          this.user$$.next(user)
+        } catch (error) {
+          console.error('Error parsing user from localStorage', error)
+          localStorage.removeItem(this.USER_KEY)
+        }
+    }
+
+    }
+      this.user$.subscribe((user) => {
+        debugger
+        this.user = user
+        console.log('User inside the constructor is:', this.user)
     })
   }
 
@@ -62,7 +83,14 @@ export class UserService{
     const API = '/api'
 
     return this.http.post<UserForAuth>(`${API}/users/login`, { email, password })
-           .pipe(tap((user) => this.user$$.next(user)))
+           .pipe(
+              tap(user => {
+                debugger
+                localStorage.setItem(this.USER_KEY,JSON.stringify(user))
+                debugger
+                this.user$$.next(user)
+              })
+           )
     
   }
 
@@ -90,7 +118,14 @@ export class UserService{
     const API = '/api'
     
     return this.http.post(`${API}/users/logout`,{})
-            .pipe(tap(() => this.user$$.next(null)))
+            .pipe(
+              tap(
+                () => {
+                  localStorage.removeItem(this.USER_KEY)
+                  this.user$$.next(null)
+                } 
+              )
+            )
   }
 
 }
