@@ -9,10 +9,11 @@ import { Router } from '@angular/router';
 import { Comment } from '../../types/comment';
 import { EmailDirective } from '../../directives/email.directive';
 import { DOMAINS } from '../../constants';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-post-details',
-  imports: [FormsModule, EmailDirective],
+  imports: [FormsModule, EmailDirective, DatePipe],
   templateUrl: './post-details.component.html',
   styleUrl: './post-details.component.css'
 })
@@ -29,6 +30,7 @@ export class PostDetailsComponent implements OnInit {
   showComments: boolean = false;
   toggleDislike: boolean = false;
   isCommentOwner: boolean = false;
+  isLiked: boolean = false;
 
   constructor(private route: ActivatedRoute, private apiService: ApiService, private userService: UserService, private router: Router){}
 
@@ -41,8 +43,11 @@ export class PostDetailsComponent implements OnInit {
       theme: 'technology',
       title: 'Hellet Packard',
       description: 'Sample description',
-      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTc9APxkj0xClmrU3PpMZglHQkx446nQPG6lA&s'
-
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTc9APxkj0xClmrU3PpMZglHQkx446nQPG6lA&s',
+      likedList: [
+        {_id: '688deea61f7fa86a0122099c'}
+      ],
+      created_at: "8.15.2025"
   }
 
   ngOnInit(): void {
@@ -54,19 +59,28 @@ export class PostDetailsComponent implements OnInit {
       this.apiService.getPostId(this.postId).subscribe((post) => {
         // this.post = post
         console.log('Post is:', post)
+        // this.isPostLiked()
         this.post = post
         this.postOwner = post.owner
-
+        debugger
+        
+        console.log('Is liked:', this.isLiked)
         // retrieve the postOwner data
         this.userService.getUser(this.postOwner).subscribe((user) => {
             this.postCreator = user
         })
 
         // verify if logged in user is the post owner
+        debugger
         this.isPostOwner = this.userService.user?._id === this.postOwner
 
       })     
 
+  }
+
+  get isLogged():boolean{
+    debugger
+    return this.userService.isLoggedIn
   }
 
   createComment(commentForm:NgForm){
@@ -92,7 +106,24 @@ export class PostDetailsComponent implements OnInit {
     commentForm.reset()
   }
 
-  
+  isPostLiked(){
+    const postId = this.postId
+    const userId = this.userService.user?._id
+    
+
+    debugger
+    this.apiService.getUserLike(postId,userId).subscribe((post) => {
+      debugger
+      if (post !== undefined) {
+        debugger
+        this.isLiked = true
+      }else{
+        console.log('returned response for getUserLike:', post)
+        this.isLiked = false
+      }
+    })
+
+  }
 
   showPostComments(){
 
@@ -180,7 +211,25 @@ export class PostDetailsComponent implements OnInit {
     this.isEditMode = !this.isEditMode
   }
 
-  onLike(_id: string | undefined){
+  onLikePost(_id:string | undefined){
+    const postId = _id
+    const userId = this.userService.user?._id
+    debugger
+    this.apiService.likePost(postId, userId).subscribe((message) => {
+      console.log(message)
+
+      this.apiService.getPostId(postId).subscribe((post) => {
+        debugger
+        this.post = post
+        debugger
+        this.isPostLiked()
+      })
+    })
+
+
+  }
+
+  onLikeComment(_id: string | undefined){
     
     const commentId = _id
     const postId = this.postId
