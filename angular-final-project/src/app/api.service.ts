@@ -38,11 +38,11 @@ export class ApiService {
 
   }
 
-  getPostId(postId:string) {
+  getPostId(postId:string | undefined) {
 
-    const { apiUrl } = environment
+    const API = '/api'
 
-    return this.http.get<Post>(`${apiUrl}/posts/${postId}`)
+    return this.http.get<Post>(`${API}/posts/${postId}`)
 
   }
 
@@ -93,6 +93,12 @@ export class ApiService {
 
   }
 
+  likePost(postId: string | undefined, userId: string | undefined){
+    const API = '/api'
+    debugger
+    return this.http.post<Post>(`${API}/posts/${postId}`,{ userId })
+  }
+
   getPodcasts(){
 
       const API = '/api'
@@ -100,6 +106,14 @@ export class ApiService {
     return this.http.get<Podcast[]>(`${API}/podcasts`)
 
   }
+
+ getUserLike(postId: string, userId: string | undefined){
+
+  const API = '/api'
+
+  return this.http.get(`${API}/posts/${postId}/likedList/${userId}`)
+
+ }
 
   votePodcast(podcastId: string, userId: string | undefined){
 
