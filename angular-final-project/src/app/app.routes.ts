@@ -12,7 +12,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { MainComponent } from './main/main.component';
 import { PostDetailsComponent } from './posts/post-details/post-details.component';
 import { ErrorMsgComponent } from './core/error-msg/error-msg.component';
-import { PodcastsComponent } from './podcasts/podcasts/podcasts.component';
+import { PodcastsComponent } from './podcasts/podcasts.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -23,13 +23,20 @@ export const routes: Routes = [
     { path: 'posts', children: [
     { path: '', component: MainComponent},
     { path: ':postId', component: PostDetailsComponent}
-    ] },
-    { path: 'profile', component: ProfileComponent},
+    ]
+   },
+    { 
+      path: 'profile',
+      loadComponent: () => import('../app/user/profile/profile.component').then(c => c.ProfileComponent)
+    },
     { path: 'create',
       component: CreatePostComponent,
       canActivate: [AuthGuard]
     },
-    { path: 'podcasts', component: PodcastsComponent },
+    { 
+      path: 'podcasts',
+      loadComponent: () => import('./podcasts/podcasts.component').then(c => c.PodcastsComponent)
+    },
     { path: 'error', component: ErrorMsgComponent},
     { path: '404', component: ErrorComponent },
     { path: '**', redirectTo: '/404'}
