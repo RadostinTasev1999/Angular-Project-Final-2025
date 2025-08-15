@@ -14,13 +14,17 @@
       <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
         <div class="col p-4 d-flex flex-column position-static">
           <strong class="d-inline-block mb-2 text-primary">{{post.theme}}</strong>
+          
           <h3 class="mb-0">{{post.title}}</h3>
+          <br/>
+          <div class="mb-2 text-muted">{{post.created_at | date : 'MMM d, y, h:mm:ss a'}}</div>
           <!-- <div class="mb-1 text-muted">{{post.date}}</div> -->
           <p class="card-text mb-auto">{{post.description}}</p>
-          <a routerLink="{{post._id}}" class="stretched-link">Continue reading</a>
+          <br/>
+          <button routerLink="{{post._id}}" class="btn btn-info" >Details</button>
         </div>
         <div class="col-auto d-none d-lg-flex justify-content-center align-items-center border rounded p-2">
-            <img [src]="post.image" alt="" class="img-fluid" style="max-height:450px;">
+            <img [src]="post.image" alt="" class="img-fluid" style="max-height:300px;">
         </div>
       </div>
     </div>
