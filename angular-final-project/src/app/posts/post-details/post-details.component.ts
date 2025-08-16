@@ -28,9 +28,11 @@ export class PostDetailsComponent implements OnInit {
   isEditMode: boolean = false;
   postComments: Comment[] = []
   showComments: boolean = false;
+  noComments: boolean = false;
   toggleDislike: boolean = false;
   isCommentOwner: boolean = false;
   isLiked: boolean = false;
+  
 
   constructor(private route: ActivatedRoute, private apiService: ApiService, private userService: UserService, private router: Router){}
 
@@ -130,8 +132,18 @@ export class PostDetailsComponent implements OnInit {
         const postId = this.postId
 
         this.apiService.getPostComments(postId).subscribe((comments) => {
-          this.postComments = comments
-          this.showComments = true
+          console.log('Comments are:', comments)
+          debugger
+          if (comments.length !== 0) {
+            debugger
+              this.postComments = comments
+              
+          }else{
+            debugger
+              this.noComments = true;         
+          }
+          debugger
+              this.showComments = true
       })
     
   }
