@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit, WritableSignal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgForm } from '@angular/forms';
 import { UserService } from '../user.service';
@@ -6,6 +6,9 @@ import { Router } from '@angular/router'
 import { emailValidator } from '../../utils/email.validator';
 import { EmailDirective } from '../../directives/email.directive';
 import { DOMAINS } from '../../constants'
+import { ErrorMsgService } from '../../core/error-msg/error-msg.service';
+import { signal } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -13,11 +16,32 @@ import { DOMAINS } from '../../constants'
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit{
 
   domains = DOMAINS
 
-  constructor(private userService: UserService, private router: Router){}
+  value: HttpErrorResponse | null = null
+  errorMsg = signal(this.value)
+  authError: boolean = false;
+
+  constructor(private userService: UserService, private router: Router, private errorMsgService: ErrorMsgService){}
+
+  ngOnInit(): void {
+    debugger
+    console.log(this.authError)
+    if (!this.authError) {    
+      this.errorMsgService.apiError$.subscribe((err) => {
+          debugger
+          if (err) {
+            this.errorMsg.set(err)
+            this.authError = true
+            this.errorMsgService.apiError$$.next(null)
+          }     
+      })
+      // this.errorMsgService.apiError$$.next(null)
+    }
+      
+  }
 
     onLogin(loginForm:NgForm){
       if (loginForm.invalid) {
@@ -25,11 +49,12 @@ export class LoginComponent {
       }
       const { email, password } = loginForm.value
 
-      this.userService.login(email,password).subscribe((user) => {
-        console.log(`User ${user.username} has just logged in! `)
+      this.userService.login(email,password).subscribe((response) => {
+        console.log(response)
         this.router.navigate(['/home'])
       })
       
     }
+
 
 }
