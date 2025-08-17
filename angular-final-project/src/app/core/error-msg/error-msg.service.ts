@@ -14,7 +14,13 @@ export class ErrorMsgService {
 
   setError(error:HttpErrorResponse): void{
     debugger
-    console.log('Error in error-msg.service.ts is', error)
-    this.apiError$$.next(error)
+    console.log('Error is:', error)
+    if (error.status === 401) {
+      const message = error.error.message
+      return  this.apiError$$.next(message)
+    }else{
+      return this.apiError$$.next(error)
+    }
+    
   }
 }
