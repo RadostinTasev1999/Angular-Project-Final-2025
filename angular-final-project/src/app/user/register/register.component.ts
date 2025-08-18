@@ -17,7 +17,11 @@ export class RegisterComponent {
   registerForm = new FormGroup({
     username: new FormControl('',[Validators.minLength(5), Validators.required]),
     email: new FormControl('', [Validators.required, emailValidator(DOMAINS)]),
-    tel: new FormControl('', [Validators.required, Validators.minLength(11)]),
+    phonenumber: new FormControl('', [Validators.required, Validators.minLength(11)]),
+    position: new FormControl('',[Validators.required, Validators.minLength(8)]),
+    born: new FormControl('',[Validators.required]),
+    city: new FormControl('',[Validators.required]),
+    country: new FormControl('',[Validators.required]),
     passGroup: new FormGroup(
       {
 
@@ -40,14 +44,19 @@ export class RegisterComponent {
       return;
     }
     const {
-      email,
-      tel,
       username,
+      email,
+      phonenumber,
+      position,
+      born,
+      city,
+      country,
       passGroup: {password, rePassword} = {}
     } = this.registerForm.value 
       debugger
-     this.userService.register(email!,username!,tel!,password!,rePassword!).subscribe({
+     this.userService.register(username!,email!,phonenumber!,position!,born!,city!,country!,password!,rePassword!).subscribe({
         next: (user) => {
+          debugger
           console.log('User registered!')
          this.router.navigate(['/posts'])
         },
