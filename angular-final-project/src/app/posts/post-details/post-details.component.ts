@@ -97,12 +97,13 @@ export class PostDetailsComponent implements OnInit {
       name
     } = commentForm.value
       console.log('Comment form props are:', email, message, name)
-      debugger
+      
       const id = this.postId
       const commentOwnerId = this.userService.user?._id
-      debugger
+      
       this.apiService.createPostComment(email,message,name,id,commentOwnerId).subscribe((message) => {
-          console.log('Message is:',message)
+          
+      this.hideComments()
       })
 
     commentForm.reset()
@@ -137,6 +138,7 @@ export class PostDetailsComponent implements OnInit {
           if (comments.length !== 0) {
             debugger
               this.postComments = comments
+              console.log('Comments likes:', comments[0].likedList)
               
           }else{
             debugger
@@ -248,6 +250,7 @@ export class PostDetailsComponent implements OnInit {
     const userId = this.userService.user?._id
     debugger
     this.apiService.likeComment(commentId,postId,userId).subscribe((message) => {
+      debugger
       console.log({message})
     })
 
