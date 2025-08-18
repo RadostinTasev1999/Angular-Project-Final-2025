@@ -1,9 +1,13 @@
 export interface ProfileDetails {
-    username: string,
-    position: string,
-    born: string,
-    city: string,
-    country: string,
-    email: string,
-    phoneNumber: string
+    username?: string,
+    email?: string,
+    phonenumber?: string,
+    position?: string,
+    born?: string,
+    city?: string,
+    country?: string,
+    image?: string,
+    password?: string,
+    rePassword?:string,
+    _id?: string
 }
