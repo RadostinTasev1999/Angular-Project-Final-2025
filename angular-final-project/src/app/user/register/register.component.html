@@ -43,14 +43,73 @@
       class="form-control" 
       id="floatingInput" 
       placeholder="123-123-123"
-      formControlName="tel"
+      formControlName="phonenumber"
       >
       <label for="floatingInput">Phone number</label>
-      @if(isFieldTextMissing('tel')){
+      @if(isFieldTextMissing('phonenumber')){
         <p>Phone number is required!</p>
       }
-      @if(isNotMinLength('tel')){
+      @if(isNotMinLength('phonenumber')){
         <p>Phone number must be at least 10 characters long!</p>
+      }
+    </div>
+
+    <div class="form-floating mb-3">
+      <input 
+      type="text" 
+      class="form-control" 
+      id="floatingInput" 
+      placeholder="Job Position"
+      formControlName="position"
+      >
+      <label for="floatingInput">Enter Position</label>
+      @if(isFieldTextMissing('position')){
+        <p>Position is required!</p>
+      }
+      @if(isNotMinLength('position')){
+        <p>Position must be at least 10 characters long!</p>
+      }
+    </div>
+
+    <div class="form-floating mb-3">
+      <input 
+         type="date" 
+         class="form-control" 
+         id="born" 
+         name="born"
+         formControlName="born"
+         required>                                        
+      <label for="born" class="form-label">Date of Birth</label>
+      @if(isFieldTextMissing('born')){
+          <p>Please Enter date of Birth</p>
+      }
+    </div>
+
+    <div class="form-floating mb-3">
+      <input 
+      type="text" 
+      class="form-control" 
+      id="floatingInput" 
+      placeholder="City"
+      formControlName="city"
+      >
+      <label for="floatingInput">City</label>
+      @if(isFieldTextMissing('city')){
+          <p>Please enter a city!</p>
+      }
+    </div>
+
+    <div class="form-floating mb-3">
+      <input 
+      type="text" 
+      class="form-control" 
+      id="floatingInput" 
+      placeholder="Country"
+      formControlName="country"
+      >
+      <label for="floatingInput">Country</label>
+      @if(isFieldTextMissing('country')){
+          <p>Please enter a country!</p>
       }
     </div>
 
