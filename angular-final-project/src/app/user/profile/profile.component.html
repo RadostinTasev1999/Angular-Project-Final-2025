@@ -133,16 +133,16 @@
                                                 type="tel" 
                                                 class="form-control" 
                                                 id="phone" 
-                                                name="phoneNumber"
-                                                formControlName="phoneNumber"
+                                                name="phonenumber"
+                                                formControlName="phonenumber"
                                                 required
                                                 >
-                                                @if(profileForm.get('phoneNumber')?.touched){
+                                                @if(profileForm.get('phonenumber')?.touched){
                                                     <div>
-                                                        @if(profileForm.get('phoneNumber')?.hasError('required')){
+                                                        @if(profileForm.get('phonenumber')?.hasError('required')){
                                                             <p>Please enter a phone number!</p>
                                                         }
-                                                        @if(profileForm.get('phoneNumber')?.hasError('minlength')){
+                                                        @if(profileForm.get('phonenumber')?.hasError('minlength')){
                                                             <p>Please enter at least 11 characters</p>
                                                         }
                                                     </div>
@@ -177,10 +177,9 @@
                         <div class="row g-4 align-items-center">
                             <!-- Profile Picture -->
                             <div class="col-md-4 text-center">
-                                <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="avatar"
-                                    class="rounded-circle img-fluid" width="150">
-                                <h5 class="mt-3 mb-0">{{firstName}}</h5>
-                                <small class="text-muted">{{userData.position}}</small>
+                               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><!--!Font Awesome Free v7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M320 312C386.3 312 440 258.3 440 192C440 125.7 386.3 72 320 72C253.7 72 200 125.7 200 192C200 258.3 253.7 312 320 312zM290.3 368C191.8 368 112 447.8 112 546.3C112 562.7 125.3 576 141.7 576L498.3 576C514.7 576 528 562.7 528 546.3C528 447.8 448.2 368 349.7 368L290.3 368z"/></svg>
+                                <h5 class="mt-3 mb-0">{{userDetails?.username}}</h5>
+                                <small class="text-muted">{{userDetails?.position}}</small>
                             </div>
                 
                             <!-- User Info -->
@@ -188,19 +187,19 @@
                                 <ul class="list-group list-group-flush">
                                     <li class="list-group-item d-flex align-items-center">
                                         <i class="bi bi-calendar3 me-3 fs-5 text-secondary"></i>
-                                        <span>{{userData.born}}</span>
+                                        <span>{{userDetails?.born}}</span>
                                     </li>
                                     <li class="list-group-item d-flex align-items-center">
                                         <i class="bi bi-geo-alt me-3 fs-5 text-secondary"></i>
-                                        <span>{{userData.city}}, {{userData.country}}</span>
+                                        <span>{{userDetails?.city}}, {{userDetails?.country}}</span>
                                     </li>
                                     <li class="list-group-item d-flex align-items-center">
                                         <i class="bi bi-envelope me-3 fs-5 text-secondary"></i>
-                                        <a class="text-decoration-none">{{userData.email}}</a>
+                                        <a class="text-decoration-none">{{userDetails?.email}}</a>
                                     </li>
                                     <li class="list-group-item d-flex align-items-center">
                                         <i class="bi bi-telephone me-3 fs-5 text-secondary"></i>
-                                        <span>{{userData.phoneNumber}}</span>
+                                        <span>{{userDetails?.phonenumber}}</span>
                                     </li>
                                 </ul>
                             </div>
