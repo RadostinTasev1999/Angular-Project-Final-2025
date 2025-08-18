@@ -185,7 +185,7 @@
                                                             </button>
                                                             <!-- <span class="badge rounded-pill bg-success animate-like-burst">Likes: {{comment.likedList?.length !== 0 ? `${comment.likedList?.length}` : 0}}</span> -->
                                                             <button type="button" class="btn btn-success btn-sm rounded-pill px-2 py-1 shadow-sm">
-                                                                <i class="bi bi-pencil"></i> Likes {{comment.likedList?.length !== 0 ? `${comment.likedList?.length}` : 0}}
+                                                                <i class="bi bi-pencil"></i> Likes {{comment.likedList?.length === 0 || comment.likedList === undefined ? 0 : `${comment.likedList?.length}`}}
                                                             </button>
                                                             <!-- <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-hand-thumbs-down"
                                                                 viewBox="0 0 16 16">
