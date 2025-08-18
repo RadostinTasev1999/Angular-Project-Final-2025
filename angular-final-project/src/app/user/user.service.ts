@@ -6,6 +6,7 @@ import { BehaviorSubject } from 'rxjs';
 import { throwError } from 'rxjs';
 import { tap, Subscription } from 'rxjs'
 import { UserForAuth } from '../types/user';
+import { count } from 'console';
 //import { environment } from '../environment/environment.development';
 
 
@@ -94,12 +95,16 @@ export class UserService{
     
   }
 
-  register(email: string, username: string, tel: string, password: string, rePassword: string){
+  register(username:string, email: string, phonenumber: string, position: string, born: string, city: string,country: string,password: string, rePassword: string){
 
     const payload = { 
-      email,
       username,
-      tel,
+      email,
+      phonenumber,
+      position,
+      born,
+      city,
+      country,
       password,
       rePassword
     }
