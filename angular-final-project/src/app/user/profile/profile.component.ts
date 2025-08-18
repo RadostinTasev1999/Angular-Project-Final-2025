@@ -16,20 +16,12 @@ export class ProfileComponent implements OnInit{
 
   constructor(private userService: UserService){}
 
+  userDetails: ProfileDetails | null = null
+
   get firstName():string | undefined {
 
     return this.userService.username
 
-  }
-
-  userData: ProfileDetails = {
-      username: 'Tasev',
-      position: 'Web Developer',
-      born: '04/19/1999',
-      city: 'Sofia',
-      country: 'Bulgaria',
-      email: 'tasev@gmail.com',
-      phoneNumber: '123-123-123'
   }
   
   isEditMode: boolean = false;
@@ -41,15 +33,24 @@ export class ProfileComponent implements OnInit{
     city: new FormControl('',[Validators.required]),
     country: new FormControl('',[Validators.required]),
     email: new FormControl('', [Validators.required, emailValidator(DOMAINS)]),
-    phoneNumber: new FormControl('',[Validators.required, Validators.minLength(11)])
+    phonenumber: new FormControl('',[Validators.required, Validators.minLength(11)])
   })
 
   ngOnInit(): void{
-    this.profileForm.patchValue(this.userData)
+    
+    console.log('User properties are:', this.userService.user)
+    this.userDetails = this.userService.user
+    debugger
+    if (this.userDetails) {
+      debugger
+      this.profileForm.patchValue(this.userDetails)
+    }
+
   }
 
   
   toggleEditMode(){
+    debugger
     this.isEditMode = !this.isEditMode
   }
 
@@ -71,9 +72,9 @@ export class ProfileComponent implements OnInit{
     //   email,
     //   phoneNumber
     // } = this.profileForm.value
-
-    this.userData = this.profileForm?.value as ProfileDetails
-
+  debugger
+    this.userDetails = this.profileForm?.value as ProfileDetails
+    console.log('userDetails are:', this.userDetails)
     this.toggleEditMode()
 
   }
