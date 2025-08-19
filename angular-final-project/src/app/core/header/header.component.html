@@ -9,7 +9,9 @@
         <li><a routerLink="/home" class="nav-link px-2 link-secondary">Home</a></li>
         <li><a routerLink="/posts" class="nav-link px-2 link-dark">Posts</a></li>
         <li><a routerLink="/podcasts" class="nav-link px-2 link-dark">Podcasts</a></li>
-        <li><a routerLink="/create" class="nav-link px-2 link-dark">Create Post</a></li>
+        @if(isLoggedIn){
+          <li><a routerLink="/create" class="nav-link px-2 link-dark">Create Post</a></li>
+        }     
       </ul>
       @if(isLoggedIn){
       <div class="col-md-3 text-end">
