@@ -32,9 +32,9 @@ export class UserService{
         
         if (localStorageUser) {
           try {
-            debugger
+            
           const user = JSON.parse(localStorageUser) as UserForAuth
-          debugger
+          
           this.user$$.next(user)
         } catch (error) {
           console.error('Error parsing user from localStorage', error)
@@ -44,14 +44,14 @@ export class UserService{
 
     }
       this.user$.subscribe((user) => {
-        debugger
+        
         this.user = user
-        console.log('User inside the constructor is:', this.user)
+       
     })
   }
 
   get isLoggedIn(): boolean{
-  //  console.log('User is:', this.user)
+
     return !!this.user
   }
 
@@ -69,8 +69,8 @@ export class UserService{
   getUser(userId:string | undefined) {
 
     const API = '/api'
-    console.log('User ID is:', userId)
-    debugger
+   
+    
     return this.http.get<UserForAuth>(`${API}/users/${userId}`)
 
   }
@@ -86,9 +86,9 @@ export class UserService{
     return this.http.post<UserForAuth>(`${API}/users/login`, { email, password })
            .pipe(
               tap(user => {
-                debugger
+                
                 localStorage.setItem(this.USER_KEY,JSON.stringify(user))
-                debugger
+                
                 this.user$$.next(user)
               })
            )
@@ -110,10 +110,10 @@ export class UserService{
     }
 
     const API = '/api'
-    // debugger
+    // 
     return this.http.post<UserForAuth>(`${API}/users/register`, payload)
               .pipe(tap(user => {
-                console.log('User is:', user)
+               
                 this.user$$.next(user)
               }))
               
