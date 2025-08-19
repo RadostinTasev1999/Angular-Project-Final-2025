@@ -34,6 +34,7 @@ export class PostDetailsComponent implements OnInit {
   isLiked: boolean = false;
   isPostLiked: boolean = false;
   userId: string | undefined = undefined
+  isCommentLiked: boolean = false;
 
   constructor(private route: ActivatedRoute, private apiService: ApiService, private userService: UserService, private router: Router){}
 
@@ -140,6 +141,7 @@ export class PostDetailsComponent implements OnInit {
               this.noComments = true;         
           }
           
+          
               this.showComments = true
       })
     
@@ -243,9 +245,23 @@ export class PostDetailsComponent implements OnInit {
     const postId = this.postId
     const userId = this.userService.user?._id
     
-    this.apiService.likeComment(commentId,postId,userId).subscribe((message) => {
+    this.apiService.likeComment(commentId,postId,userId).subscribe((response) => {
+        console.log('Message is:', response)
+        if (response.message === 'Comment successfully liked!') {
+            this.isCommentLiked = true
+            
+        }
+        if (response.message === `User ${userId} has already liked comment ${commentId}`) {
+            this.isCommentLiked = true
+            
+        }
+        
+        this.apiService.getPostComments(postId).subscribe(
+          (comments) => {
+            this.postComments = comments
+          }
+        )
       
-     
     })
 
     // this.toggleDislike = true;
