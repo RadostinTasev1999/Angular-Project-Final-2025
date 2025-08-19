@@ -67,25 +67,23 @@ export class PostDetailsComponent implements OnInit {
       this.userId = this.userService.user?._id
 
       this.route.params.subscribe((el) => {
-          console.log('Value from obs is:', el)
+         
           this.postId = el['postId']
       })
  
       this.apiService.getPostId(this.postId).subscribe((post) => {
-        // this.post = post
-        console.log('Post is:', post)
-        // this.isPostLiked()
+       
         this.post = post
         this.postOwner = post.owner
-        debugger
+        
         if (post.likedList.includes(`${this.userId}`)) {
-debugger
+
             this.isPostLiked = true
         }
         
         
-        console.log('Is liked:', this.isLiked)
-        // retrieve the postOwner data
+       
+        
         this.userService.getUser(this.postOwner).subscribe((user) => {
             this.postCreator = user
         })
@@ -110,7 +108,7 @@ debugger
       message,
       name
     } = commentForm.value
-      console.log('Comment form props are:', email, message, name)
+     
       
       const id = this.postId
       const commentOwnerId = this.userService.user?._id
@@ -123,36 +121,19 @@ debugger
     commentForm.reset()
   }
 
-  // isPostLiked(){
-  //   const postId = this.postId
-  //   const userId = this.userService.user?._id
-    
-
-  //   
-  //   this.apiService.getUserLike(postId,userId).subscribe((post) => {
-  //     
-  //     if (post !== undefined) {
-  //       
-  //       this.isLiked = true
-  //     }else{
-  //       console.log('returned response for getUserLike:', post)
-  //       this.isLiked = false
-  //     }
-  //   })
-
-  // }
+  
 
   showPostComments(){
 
         const postId = this.postId
 
         this.apiService.getPostComments(postId).subscribe((comments) => {
-          console.log('Comments are:', comments)
+         
           
           if (comments.length !== 0) {
             
               this.postComments = comments
-              console.log('Comments likes:', comments[0].likedList)
+              
               
           }else{
             
@@ -203,15 +184,10 @@ debugger
       title
     } = form.value
 
-    console.log('Form properties:',{
-        content,
-        image,
-        theme,
-        title
-    })
+    
     
     this.apiService.editPost(content,image,theme,title,id).subscribe((message) => {
-        console.log('Message:', message)
+       
         
         form.reset()
         this.toggleEditMode()
@@ -245,7 +221,7 @@ debugger
     const userId = this.userService.user?._id
     
     this.apiService.likePost(postId, userId).subscribe((response) => {
-          debugger
+          
           if (response.message?.includes(`${userId}`)) {
               this.isPostLiked = true
           }
@@ -269,7 +245,7 @@ debugger
     
     this.apiService.likeComment(commentId,postId,userId).subscribe((message) => {
       
-      console.log({message})
+     
     })
 
     // this.toggleDislike = true;
