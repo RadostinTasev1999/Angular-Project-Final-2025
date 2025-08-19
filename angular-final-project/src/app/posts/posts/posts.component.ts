@@ -19,9 +19,9 @@ export class PostsComponent implements OnInit{
 
   ngOnInit(): void {
       this.apiService.getPosts().subscribe((post) => {
-        debugger
+        
         this.posts = post
-        console.log('Post collection is:', post)
+       
       })
 
       
