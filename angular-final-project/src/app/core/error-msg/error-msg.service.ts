@@ -13,8 +13,8 @@ export class ErrorMsgService {
   public apiError$ = this.apiError$$.asObservable()
 
   setError(error:HttpErrorResponse): void{
-    debugger
-    console.log('Error is:', error)
+    
+   
     if (error.status === 401) {
       const message = error.error.message
       return  this.apiError$$.next(message)
