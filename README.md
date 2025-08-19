@@ -73,9 +73,13 @@ Authenticated users can perform logout by clicking on the __Logout__ button on t
 
 - __Home page__: Main application page. Shows users the Website title and introductory description. The page also visualizes __Login__ and __Register__ buttons, which when clicked on, navigate the user to __Login__ and __Register__ pages.
 
-- __Posts__: Shows the user all posts created by website members. Each posts includes a __Details__ button, which navigates the user to the Details page of the particular post. Each post has a __theme__, __Heading__, __Date of creation__, __Description__, __Image__, __Detais button__
+- __Posts__: Shows the user (guest / authenticated user) all posts created by website members. Each posts includes a __Details__ button, which when clicked, navigates the user to the Details page of the particular post. Each post has a __Theme__, __Heading__, __Date of creation__, __Description__, __Image__, __Details button__
 
-- 
+- __Podcasts__: Shows the user a list of Featured podcasts. Users can listen to each podcast, by clicking on the __Listen__ button, which navigates them to the source podcast webpage.  
+
+- __Post Details Page__:  
+
+__Guest users__: Guest users can see the Post details
 
 
 
