@@ -3,10 +3,11 @@ import { ApiService } from '../../api.service';
 import { Post } from '../../types/post';
 import { RouterLink } from '@angular/router';
 import { DatePipe } from '@angular/common'
+import { SlicePipe } from '../../shared/pipes/slice.pipe';
 
 @Component({
   selector: 'app-posts',
-  imports: [RouterLink,DatePipe],
+  imports: [RouterLink,DatePipe, SlicePipe],
   templateUrl: './posts.component.html',
   styleUrl: './posts.component.css'
 })
