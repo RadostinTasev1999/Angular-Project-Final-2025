@@ -6,6 +6,7 @@ export interface Post {
     image: string,
     _id?: string,
     likedList: Array<Object>,
-    created_at: string
+    created_at: string,
+    message?: string
 }
 
