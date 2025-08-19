@@ -28,4 +28,13 @@ src / app
 -  /podcasts: podcast component
 -  /posts: create-post component / post-details component / posts component
 -  /types: each .ts file exports an interface. Interfaces are: Comment / Podcast / Post / ProfileDetails / UserForAuth
--  /user: login component / profile component / register component / user.service.ts (holds methods which perform http requests to /users endpoint manages user authentication state by using Behavior Subject and localStorage to store user data)
+-  /user: login component / profile component / register component / user.service.ts (holds methods which perform http requests to /users endpoint, manages user authentication state by using Behavior Subject and localStorage to store user data)
+-  /utils: /email validator, implements ValidatorFn (A function that receives a control (email control input) and synchronously returns a map of validation errors if present, otherwise null.) / match passwords validator,implements ValidatorFn (A function that receives a control (password and re-password control input) and synchronously returns a map of validation errors if present, otherwise null.)
+-  /api.service.ts: holds method which manage CRUD operations
+-  /app.config.ts: imported provideHttpClient() in the providers array in order to configure Angular's HttpClient service to be available for injection. Passed feature functions withFetch() and withInterceptors([appInterceptor])
+- /app.interceptor.ts: configured an interceptor for HTTP requests made via HttpClient.
+- /app.routes.ts: add route configuration for the Router service
+- /constants.ts: declare and export a constant DOMAINS
+- /index.html: include Bootstrap CSS framework via content delivery network / load Bootstrap's JavaScript Bundle from a CDN / load Font Awesome icon library using CDN link
+- /package.json: installed dependencies: bootstrap / express / rxjs / tslib / zone.js
+
