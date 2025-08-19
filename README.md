@@ -27,6 +27,7 @@ src / app
 -  /main: main component
 -  /podcasts: podcast component
 -  /posts: create-post component / post-details component / posts component
+-  /shared/pipes: slice-pipe (created custom pipe in order to transform string values)
 -  /types: each .ts file exports an interface. Interfaces are: Comment / Podcast / Post / ProfileDetails / UserForAuth
 -  /user: login component / profile component / register component / user.service.ts (holds methods which perform http requests to /users endpoint, manages user authentication state by using Behavior Subject and localStorage to store user data)
 -  /utils: /email validator, implements ValidatorFn (A function that receives a control (email control input) and synchronously returns a map of validation errors if present, otherwise null.) / match passwords validator,implements ValidatorFn (A function that receives a control (password and re-password control input) and synchronously returns a map of validation errors if present, otherwise null.)
@@ -79,7 +80,6 @@ Authenticated users can perform logout by clicking on the __Logout__ button on t
 
 - __Post Details Page__:  
 
-__Guest users__: Guest users can see the Post details
-
-
-
+__Guest users__: Guest users can see the Post details Page, which includes the particular post with the full description. Guests can also view the comments related to the post. If no comments are present for the post, the user sees a message `No comments for this post yet!`  
+__Authenticated user__: Authenticated users can interact with the Post Details page, by __Likes__, __Comments__ .Post creators cannot Like their own Post. Users cannot like their own comments associated with the Post. To like a Post, the user can click on the Like button on the bottom left side of the Post.To create a comment, the user can fill in the `Leave a Comment` form under the Post. The __Comment Form__ includes `Name, Email and Message` input fields. After the user fills in the input fields, the __Submit__ button must be clicked in order to create the comment.
+In order to view the newly created comment for the Post, the user must click on the __Show Comments__  button. After clicking this button, the page which render all comments for this particular post. If the user wants to hide the comments associated with the Post, the user must click on `Hide Comments` button.
