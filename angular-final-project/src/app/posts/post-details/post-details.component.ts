@@ -32,7 +32,8 @@ export class PostDetailsComponent implements OnInit {
   toggleDislike: boolean = false;
   isCommentOwner: boolean = false;
   isLiked: boolean = false;
-  
+  isPostLiked: boolean = false;
+  userId: string | undefined = undefined
 
   constructor(private route: ActivatedRoute, private apiService: ApiService, private userService: UserService, private router: Router){}
 
@@ -52,7 +53,19 @@ export class PostDetailsComponent implements OnInit {
       created_at: "8.15.2025"
   }
 
+  
+ 
+  get isLogged():boolean{
+    
+    return this.userService.isLoggedIn
+  }
+
+ 
+
   ngOnInit(): void {
+
+      this.userId = this.userService.user?._id
+
       this.route.params.subscribe((el) => {
           console.log('Value from obs is:', el)
           this.postId = el['postId']
@@ -65,6 +78,11 @@ export class PostDetailsComponent implements OnInit {
         this.post = post
         this.postOwner = post.owner
         debugger
+        if (post.likedList.includes(`${this.userId}`)) {
+debugger
+            this.isPostLiked = true
+        }
+        
         
         console.log('Is liked:', this.isLiked)
         // retrieve the postOwner data
@@ -73,16 +91,12 @@ export class PostDetailsComponent implements OnInit {
         })
 
         // verify if logged in user is the post owner
-        debugger
+        
         this.isPostOwner = this.userService.user?._id === this.postOwner
 
       })     
+      
 
-  }
-
-  get isLogged():boolean{
-    debugger
-    return this.userService.isLoggedIn
   }
 
   createComment(commentForm:NgForm){
@@ -109,24 +123,24 @@ export class PostDetailsComponent implements OnInit {
     commentForm.reset()
   }
 
-  isPostLiked(){
-    const postId = this.postId
-    const userId = this.userService.user?._id
+  // isPostLiked(){
+  //   const postId = this.postId
+  //   const userId = this.userService.user?._id
     
 
-    debugger
-    this.apiService.getUserLike(postId,userId).subscribe((post) => {
-      debugger
-      if (post !== undefined) {
-        debugger
-        this.isLiked = true
-      }else{
-        console.log('returned response for getUserLike:', post)
-        this.isLiked = false
-      }
-    })
+  //   
+  //   this.apiService.getUserLike(postId,userId).subscribe((post) => {
+  //     
+  //     if (post !== undefined) {
+  //       
+  //       this.isLiked = true
+  //     }else{
+  //       console.log('returned response for getUserLike:', post)
+  //       this.isLiked = false
+  //     }
+  //   })
 
-  }
+  // }
 
   showPostComments(){
 
@@ -134,24 +148,25 @@ export class PostDetailsComponent implements OnInit {
 
         this.apiService.getPostComments(postId).subscribe((comments) => {
           console.log('Comments are:', comments)
-          debugger
+          
           if (comments.length !== 0) {
-            debugger
+            
               this.postComments = comments
               console.log('Comments likes:', comments[0].likedList)
               
           }else{
-            debugger
+            
               this.noComments = true;         
           }
-          debugger
+          
               this.showComments = true
       })
     
   }
+ 
 
    commentOwner(ownerId:string | undefined): boolean{
-    debugger
+    
     return this.userService.user?._id === ownerId
 
   }
@@ -194,10 +209,10 @@ export class PostDetailsComponent implements OnInit {
         theme,
         title
     })
-    debugger
+    
     this.apiService.editPost(content,image,theme,title,id).subscribe((message) => {
         console.log('Message:', message)
-        debugger
+        
         form.reset()
         this.toggleEditMode()
         this.router.navigate([`/posts/${id}`]).then(() => {
@@ -228,16 +243,19 @@ export class PostDetailsComponent implements OnInit {
   onLikePost(_id:string | undefined){
     const postId = _id
     const userId = this.userService.user?._id
-    debugger
-    this.apiService.likePost(postId, userId).subscribe((message) => {
-      console.log(message)
-
-      this.apiService.getPostId(postId).subscribe((post) => {
-        debugger
-        this.post = post
-        debugger
-        this.isPostLiked()
-      })
+    
+    this.apiService.likePost(postId, userId).subscribe((response) => {
+          debugger
+          if (response.message?.includes(`${userId}`)) {
+              this.isPostLiked = true
+          }
+            this.apiService.getPostId(postId).subscribe((post) => {        
+            this.post = post 
+            if (post.likedList?.includes(`${userId}`)) {
+              this.isPostLiked = true
+            }
+      })      
+           
     })
 
 
@@ -248,9 +266,9 @@ export class PostDetailsComponent implements OnInit {
     const commentId = _id
     const postId = this.postId
     const userId = this.userService.user?._id
-    debugger
+    
     this.apiService.likeComment(commentId,postId,userId).subscribe((message) => {
-      debugger
+      
       console.log({message})
     })
 
