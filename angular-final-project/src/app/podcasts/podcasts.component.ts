@@ -24,15 +24,15 @@ export class PodcastsComponent implements OnInit{
       })
   }
 
-  upVote(podcastId: string){
-    const userId = this.userService.user?._id 
+  // upVote(podcastId: string){
+  //   const userId = this.userService.user?._id 
 
-    this.apiService.votePodcast(podcastId,userId).subscribe((message) => {
-      console.log(message)
-    })
+  //   this.apiService.votePodcast(podcastId,userId).subscribe((message) => {
+  //     console.log(message)
+  //   })
 
-    // console.log('Podcast ID is:', _id)
+    
 
-  }
+  // }
 
 }
