@@ -53,11 +53,11 @@ export class RegisterComponent {
       country,
       passGroup: {password, rePassword} = {}
     } = this.registerForm.value 
-      debugger
+      
      this.userService.register(username!,email!,phonenumber!,position!,born!,city!,country!,password!,rePassword!).subscribe({
         next: (user) => {
-          debugger
-          console.log('User registered!')
+          
+         
          this.router.navigate(['/posts'])
         },
         error: (err) => {
