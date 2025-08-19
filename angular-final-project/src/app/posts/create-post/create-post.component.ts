@@ -31,9 +31,6 @@ export class CreatePostComponent {
       image
     } = form.value
 
-    // console.log('Properties from create form are:', theme, title, description)
-    debugger
-    console.log('UserId is:', owner)
 
     this.apiService.createPost(theme,title,description, image,owner).subscribe(() => {
         this.router.navigate(['/posts'])
