@@ -115,13 +115,13 @@ export class ApiService {
 
  }
 
-  votePodcast(podcastId: string, userId: string | undefined){
+  // votePodcast(podcastId: string, userId: string | undefined){
 
-    const API = '/api'
+  //   const API = '/api'
 
-    return this.http.post<Podcast>(`${API}/podcasts/${podcastId}`,{userId: userId})
+  //   return this.http.post<Podcast>(`${API}/podcasts/${podcastId}`,{userId: userId})
 
-  }
+  // }
 
 
 }
