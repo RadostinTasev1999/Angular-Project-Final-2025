@@ -12,7 +12,7 @@ Users of all age, who eager to learn from the stories of the community members.
 - Features included:  
   
 Authentication (Login / Register / Logout)  
-__Authenticated users__ can: (Create posts / Edit own Posts / Delete own Posts / Create comments on posts / Like Posts (except own posts) / Like Post Comments (except own post comment) / View Profile card / Edit Profile card / Access Podcasts page )
+__Authenticated users__ can: (Create posts / Edit own Posts / Delete own Posts / Create comments on posts / Like Posts (except own posts) / Like Post Comments (except own post comment) / View Profile card / Edit Profile card / Access Podcasts page )  
 __Guest users__ can: ( Login / Register / Access Posts page / Access Post details page / View Post comments / Access Podcasts page)
 
 # Project structure:
@@ -37,4 +37,11 @@ src / app
 - /constants.ts: declare and export a constant DOMAINS
 - /index.html: include Bootstrap CSS framework via content delivery network / load Bootstrap's JavaScript Bundle from a CDN / load Font Awesome icon library using CDN link
 - /package.json: installed dependencies: bootstrap / express / rxjs / tslib / zone.js
+
+# Getting Started
+
+Project set up:
+- Install dependencies: `npm install` / `npm i bootstrap` / `npm i express` / `npm i rxjs` / `npm install tslib` / `npm i zone.js`
+- Start application by navigating to root folder `angular-final-project` and execute the cmdlet in the terminal `ng serve`
+- Start server by executing cmdlet `node index.js`
 
