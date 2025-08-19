@@ -14,7 +14,7 @@ export class HeaderComponent {
   constructor(private userService: UserService, private router: Router){}
 
   get isLoggedIn():boolean{
-      console.log('User is logged in:', this.userService.isLoggedIn)
+    
     return this.userService.isLoggedIn
   }
 
@@ -27,8 +27,8 @@ export class HeaderComponent {
   onLogout(){
     // call userService
     this.userService.logout().subscribe((message) => {
-        console.log(message)
-        debugger
+       
+        
         this.router.navigate(['/home'])
     })
   }
