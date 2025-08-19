@@ -18,21 +18,12 @@ export class PodcastsComponent implements OnInit{
 
   ngOnInit(): void {
       this.apiService.getPodcasts().subscribe((podcastList) => {
-        debugger
+        
         this.podcastList = podcastList
-        console.log('Podcast list is:', podcastList)
+       
       })
   }
 
-  // upVote(podcastId: string){
-  //   const userId = this.userService.user?._id 
 
-  //   this.apiService.votePodcast(podcastId,userId).subscribe((message) => {
-  //     console.log(message)
-  //   })
-
-    
-
-  // }
 
 }
