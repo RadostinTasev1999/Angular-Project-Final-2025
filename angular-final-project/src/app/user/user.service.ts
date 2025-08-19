@@ -112,10 +112,12 @@ export class UserService{
     const API = '/api'
     // 
     return this.http.post<UserForAuth>(`${API}/users/register`, payload)
-              .pipe(tap(user => {
-               
-                this.user$$.next(user)
-              }))
+              .pipe(
+                tap(user => {
+                  localStorage.setItem(this.USER_KEY,JSON.stringify(user))
+                  this.user$$.next(user)
+                })
+              )
               
   }
 
