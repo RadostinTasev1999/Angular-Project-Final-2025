@@ -38,11 +38,11 @@ export class ProfileComponent implements OnInit{
 
   ngOnInit(): void{
     
-    console.log('User properties are:', this.userService.user)
+  
     this.userDetails = this.userService.user
-    debugger
+    
     if (this.userDetails) {
-      debugger
+      
       this.profileForm.patchValue(this.userDetails)
     }
 
@@ -50,7 +50,7 @@ export class ProfileComponent implements OnInit{
 
   
   toggleEditMode(){
-    debugger
+    
     this.isEditMode = !this.isEditMode
   }
 
@@ -72,9 +72,9 @@ export class ProfileComponent implements OnInit{
     //   email,
     //   phoneNumber
     // } = this.profileForm.value
-  debugger
+  
     this.userDetails = this.profileForm?.value as ProfileDetails
-    console.log('userDetails are:', this.userDetails)
+   
     this.toggleEditMode()
 
   }
