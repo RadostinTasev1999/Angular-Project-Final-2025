@@ -49,13 +49,13 @@
                                 } 
                                 @if(!isPostOwner && isLogged){
                                     <div class="d-flex justify-content-start gap-2 mt-2">
-                                        @if(!isLiked){
+                                        @if(!isPostLiked){
                                             <button (click)="onLikePost(post._id)" type="button" class="btn btn-outline-primary btn-sm rounded-pill px-3 shadow-sm">
                                                 <i class="bi bi-pencil"></i> Like
                                             </button>
                                         }
                                         
-                                       <span class="btn btn-outline-success btn-sm rounded-pill px-3 shadow-sm">Likes: {{post.likedList.length !== 0 ? `${post.likedList.length}` : 0}}</span>
+                                       <span class="btn btn-outline-success btn-sm rounded-pill px-3 shadow-sm">Likes: {{post.likedList && post.likedList.length !== 0 ? post.likedList.length : 0 }}</span>
                                     </div>
                                 }
                             </article>
@@ -178,14 +178,14 @@
                                                         </svg>
                                                         <span class="text-secondary small">{{comment.created_at | date : 'MMMM d, y, h:mm:ss a z' }}</span>   
                                                     
-                                                    @if(!commentOwner(comment.owner)){
+                                                    @if(!commentOwner(comment.owner) && isLogged){
                                                         <div class="d-inline-flex align-items-center gap-2 position-relative ms-auto">
                                                             <button (click)="onLikeComment(comment._id)" type="button" class="btn btn-outline-primary btn-sm rounded-pill px-3 py-1 shadow-sm">
                                                                 <i class="bi bi-pencil"></i> Like
                                                             </button>
                                                             <!-- <span class="badge rounded-pill bg-success animate-like-burst">Likes: {{comment.likedList?.length !== 0 ? `${comment.likedList?.length}` : 0}}</span> -->
                                                             <button type="button" class="btn btn-success btn-sm rounded-pill px-2 py-1 shadow-sm">
-                                                                <i class="bi bi-pencil"></i> Likes {{comment.likedList?.length === 0 || comment.likedList === undefined ? 0 : `${comment.likedList?.length}`}}
+                                                                <!-- <i class="bi bi-pencil"></i> Likes {{comment.likedList?.length === 0 || comment.likedList === undefined ? 0 : `${comment.likedList?.length}`}} -->
                                                             </button>
                                                             <!-- <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-hand-thumbs-down"
                                                                 viewBox="0 0 16 16">
