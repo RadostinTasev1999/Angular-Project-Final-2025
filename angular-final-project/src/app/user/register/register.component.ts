@@ -56,8 +56,6 @@ export class RegisterComponent {
       
      this.userService.register(username!,email!,phonenumber!,position!,born!,city!,country!,password!,rePassword!).subscribe({
         next: (user) => {
-          
-         
          this.router.navigate(['/posts'])
         },
         error: (err) => {
