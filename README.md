@@ -45,3 +45,37 @@ Project set up:
 - Start application by navigating to root folder `angular-final-project` and execute the cmdlet in the terminal `ng serve`
 - Start server by executing cmdlet `node index.js`
 
+# Usage
+Authentication:  
+- __User login__
+  click on Login button on the top-right navigation bar, enter email address and password, click Sign in  
+
+- __User register__
+  click on Sign-up button on the top right navigation bar, enter the following credentials:   
+   
+__Username__    
+__Email address__  
+__Phone number__  
+__Position__    
+__Date of Birth__    
+__City__  
+__Country__  
+__Password__  
+__Re-Password__  
+  
+Click on Register button 
+
+- __User Logout__  
+  
+Authenticated users can perform logout by clicking on the __Logout__ button on the top-right navigation bar. After the user logs-out user credentials are deleted from localStorage and auth Cookie is also deleted.
+
+# Navigation
+
+- __Home page__: Main application page. Shows users the Website title and introductory description. The page also visualizes __Login__ and __Register__ buttons, which when clicked on, navigate the user to __Login__ and __Register__ pages.
+
+- __Posts__: Shows the user all posts created by website members. Each posts includes a __Details__ button, which navigates the user to the Details page of the particular post. Each post has a __theme__, __Heading__, __Date of creation__, __Description__, __Image__, __Detais button__
+
+- 
+
+
+
