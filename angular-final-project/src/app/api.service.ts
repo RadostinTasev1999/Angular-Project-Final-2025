@@ -51,7 +51,7 @@ export class ApiService {
     const data = { email, message, name }
 
     const API = '/api'
-    debugger
+    
     return this.http.post<Comment>(`${API}/posts/${postId}/comments`, {...data, commentOwnerId})
 
   }
@@ -72,7 +72,7 @@ export class ApiService {
       theme,
       title
     } 
-    debugger
+    
     return this.http.patch(`${API}/posts/${id}`, payload)
 
   }
@@ -88,21 +88,21 @@ export class ApiService {
   likeComment(commentId:string | undefined, postId: string | undefined,userId: string | undefined){
 
     const API = '/api'
-    debugger
+    
     return this.http.post<Comment>(`${API}/posts/${postId}/comments/${commentId}`,{userId})
 
   }
 
   likePost(postId: string | undefined, userId: string | undefined){
     const API = '/api'
-    debugger
+    
     return this.http.post<Post>(`${API}/posts/${postId}`,{ userId })
   }
 
   getPodcasts(){
 
       const API = '/api'
-      debugger
+      
     return this.http.get<Podcast[]>(`${API}/podcasts`)
 
   }
