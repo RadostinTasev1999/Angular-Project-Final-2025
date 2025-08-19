@@ -19,7 +19,7 @@
           <br/>
           <div class="mb-2 text-muted">{{post.created_at | date : 'MMM d, y, h:mm:ss a'}}</div>
           <!-- <div class="mb-1 text-muted">{{post.date}}</div> -->
-          <p class="card-text mb-auto">{{post.description}}</p>
+          <p class="card-text mb-auto" [innerHTML]="post.description | slice: 100"></p>
           <br/>
           <button routerLink="{{post._id}}" class="btn btn-info" >Details</button>
         </div>
