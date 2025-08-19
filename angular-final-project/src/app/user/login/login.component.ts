@@ -27,11 +27,11 @@ export class LoginComponent implements OnInit{
   constructor(private userService: UserService, private router: Router, private errorMsgService: ErrorMsgService){}
 
   ngOnInit(): void {
-    debugger
-    console.log(this.authError)
+    
+   
     if (!this.authError) {    
       this.errorMsgService.apiError$.subscribe((err) => {
-          debugger
+          
           if (err) {
             this.errorMsg.set(err)
             this.authError = true
@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit{
       const { email, password } = loginForm.value
 
       this.userService.login(email,password).subscribe((response) => {
-        console.log(response)
+       
         this.router.navigate(['/home'])
       })
       
