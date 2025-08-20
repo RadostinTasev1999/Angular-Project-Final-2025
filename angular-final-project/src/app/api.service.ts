@@ -77,11 +77,11 @@ export class ApiService {
 
   }
 
-  getPostComments(postId: string){
+  getPostComments(postId: string, userId: string | undefined){
 
     const API = '/api'
 
-    return this.http.get<Comment[]>(`${API}/posts/${postId}/comments`)
+    return this.http.get<Comment[]>(`${API}/posts/${postId}/comments/${userId}`)
 
   }
 
@@ -114,14 +114,6 @@ export class ApiService {
   return this.http.get(`${API}/posts/${postId}/likedList/${userId}`)
 
  }
-
-  // votePodcast(podcastId: string, userId: string | undefined){
-
-  //   const API = '/api'
-
-  //   return this.http.post<Podcast>(`${API}/podcasts/${podcastId}`,{userId: userId})
-
-  // }
 
 
 }
