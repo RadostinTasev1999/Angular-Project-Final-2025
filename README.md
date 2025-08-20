@@ -7,7 +7,7 @@ Project Name: Angular-Project-Final-2025
 The purpose of the application is to enable users to share stories and ideas on topics, including Travel, Lifestyle, Technology, Culture and Food. Users can also explore and listen to podcasts on these topics.
 - Audience:  
   
-Users of all age, who eager to learn from the stories of the community members.
+Users of all age, who are eager to learn from the stories of the community members.
 
 - Features included:  
   
@@ -81,5 +81,46 @@ Authenticated users can perform logout by clicking on the __Logout__ button on t
 - __Post Details Page__:  
 
 __Guest users__: Guest users can see the Post details Page, which includes the particular post with the full description. Guests can also view the comments related to the post. If no comments are present for the post, the user sees a message `No comments for this post yet!`  
-__Authenticated user__: Authenticated users can interact with the Post Details page, by __Likes__, __Comments__ .Post creators cannot Like their own Post. Users cannot like their own comments associated with the Post. To like a Post, the user can click on the Like button on the bottom left side of the Post.To create a comment, the user can fill in the `Leave a Comment` form under the Post. The __Comment Form__ includes `Name, Email and Message` input fields. After the user fills in the input fields, the __Submit__ button must be clicked in order to create the comment.
+__Authenticated user__: Authenticated users can interact with the Post Details page, by __Likes__, __Comments__ .Post creators cannot Like their own Post. Users cannot like their own comments associated with the Post. To like a Post, the user can click on the Like button on the bottom left side of the Post. After a user likes the post, the user can see the total number of likes for the post next to the Like button. To create a comment, the user can fill in the `Leave a Comment` form under the Post. The __Comment Form__ includes `Name, Email and Message` input fields. After the user fills in the input fields, the __Submit__ button must be clicked in order to create the comment.
 In order to view the newly created comment for the Post, the user must click on the __Show Comments__  button. After clicking this button, the page which render all comments for this particular post. If the user wants to hide the comments associated with the Post, the user must click on `Hide Comments` button.
+Post creators can see an __Edit__ and __Delete__ buttons on the bottom right side of the Post. When the post creator clicks on the __Edit__ button, and Edit post form is visualized.
+The input fields __Theme__, __Title__,__Image URL__,__Content__ include pre-filled text, which the user can edit. After the user edits the input fields the __Save changes__ button must be clicked in order to save the changes. After __Save changes__ button is clicked the user can see the Edited post. The user can also cancel the __Edit Post View__, by clicking on the __Cancel__ button in the __Edit Post Form__. After clicking the __Cancel__ button, the __Edit Post Form__ will be canceled and the user will see the original __Post__. Post creators can __Delete__ their own posts by clicking on the __Delete__ button on the bottom righ side of the Post. After clicking on the __Delete__ button, if the post has been successfully deleted, the user will see a pop-up window which confirms succeessul delete operation. After the user clicks `OK` on the dialog window, the application will navigate the user to the __Posts__ page.
+
+- __Create Post__:  
+
+__Authenticated users__ can create a new Post by clicking on the __Create Post__ button on the top navigation bar. The user must fill in the input fields: __Theme__, __Title__, __Image URL__, __Description__ and click on the __Create Post__ button in order to create a new Post. After clicking on the __Create Post__ button the application will navigate the user to the __Posts__ page, where the newly created Post can be seen.
+
+
+- __Profile Page__:  
+
+__Authenticated users__ can see their profile card after clicking on the `Username's Profile` button on the top right navigation bar. The information of the profile card include:  
+
+__Username__, __Position__, __Date of Birth__, __City / Country__, __Email__, __Phone number__  
+  
+Users can edit their own profile card by clicking on the __Edit Profile__ button on the top right corner.
+After clicking on the button, the __Edit Profile__ form will be loaded. The form includes input fields: __Username__, __Position__, __Date of Birth__, __City__, __Country__, __Email__, __Phone number__. After the user edits these input fields, the __Save Changes__ button must be clicked in order to save the changes. After clicking on __Save changes__ button, the user will be navigated to the __Profile Card__ view with the applied changes. The user can also Cancel the __Edit Profile__ form by clicking on the __Cancel__ button inside the __Edit Profile form__ view. After the user clicks on __Cancel__ button, the Profile card will be visualized with the original Profile information.
+
+
+# API Reference:  
+
+- __Base URL in launch.json__: `http://localhost:4200`
+- __Base URL in node.js server__: `http://localhost:3000`
+- __Endpoints__:  
+
+__Authentication__:  
+  
+Registration: `http://localhost:3000/users/register`    
+Login: `http://localhost:3000/users/login`  
+Logout: `http://localhost:3000/users/logout`  
+
+__Posts__:  
+  
+`http://localhost:3000/posts`
+
+__Podcasts__:  
+  
+`http://localhost:3000/podcasts`
+
+
+
+
