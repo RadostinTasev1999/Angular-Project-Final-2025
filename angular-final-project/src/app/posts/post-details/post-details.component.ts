@@ -139,7 +139,7 @@ export class PostDetailsComponent implements OnInit {
           if (comments.length !== 0) {
             
               this.postComments = comments  
-              console.log('Comments are:', comments)
+             
               
           }else{
             
@@ -255,19 +255,19 @@ export class PostDetailsComponent implements OnInit {
     const userId = this.userService.user?._id
     
     this.apiService.likeComment(commentId,postId,userId).subscribe((response) => {
-        console.log('Message is:', response)
-        if (response.message === 'Comment successfully liked!') {
-            console.log(response.message)
+       
+        // if (response.message === 'Comment successfully liked!') {
+           
             
-        }
-        if (response.message === `User ${userId} has already liked comment ${commentId}`) {
-            console.log(response.message)
+        // }
+        // if (response.message === `User ${userId} has already liked comment ${commentId}`) {
+           
             
-        }
-        debugger
+        // }
+        
         this.apiService.getPostComments(postId,userId).subscribe(
           (comments) => {
-            debugger
+            
             this.postComments = comments
           }
         )
