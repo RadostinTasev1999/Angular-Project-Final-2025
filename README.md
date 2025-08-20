@@ -107,9 +107,20 @@ After clicking on the button, the __Edit Profile__ form will be loaded. The form
 - __Base URL in node.js server__: `http://localhost:3000`
 - __Endpoints__:  
 
-__Authentication__: 
-Registration: `http://localhost:3000/users/register`  
-Login: `http://localhost:3000/users/login`
-Logout: `http://localhost:3000/users/logout`
+__Authentication__:  
+  
+Registration: `http://localhost:3000/users/register`    
+Login: `http://localhost:3000/users/login`  
+Logout: `http://localhost:3000/users/logout`  
+
+__Posts__:  
+  
+`http://localhost:3000/posts`
+
+__Podcasts__:  
+  
+`http://localhost:3000/podcasts`
+
+
 
 
