@@ -6,5 +6,6 @@ export interface Comment {
     owner?:string,
     created_at?: string,
     likedList?: [],
+    likedByCurrentUser?: boolean;
     _id?: string
 }
