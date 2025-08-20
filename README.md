@@ -99,3 +99,17 @@ __Username__, __Position__, __Date of Birth__, __City / Country__, __Email__, __
   
 Users can edit their own profile card by clicking on the __Edit Profile__ button on the top right corner.
 After clicking on the button, the __Edit Profile__ form will be loaded. The form includes input fields: __Username__, __Position__, __Date of Birth__, __City__, __Country__, __Email__, __Phone number__. After the user edits these input fields, the __Save Changes__ button must be clicked in order to save the changes. After clicking on __Save changes__ button, the user will be navigated to the __Profile Card__ view with the applied changes. The user can also Cancel the __Edit Profile__ form by clicking on the __Cancel__ button inside the __Edit Profile form__ view. After the user clicks on __Cancel__ button, the Profile card will be visualized with the original Profile information.
+
+
+# API Reference:  
+
+- __Base URL in launch.json__: `http://localhost:4200`
+- __Base URL in node.js server__: `http://localhost:3000`
+- __Endpoints__:  
+
+__Authentication__: 
+Registration: `http://localhost:3000/users/register`  
+Login: `http://localhost:3000/users/login`
+Logout: `http://localhost:3000/users/logout`
+
+
