@@ -2,33 +2,28 @@
 <!-- Posts heading -->
 <div class="p-4 p-md-5 mb-4 text-white rounded bg-dark">
     <div class="col-md-6 px-0">
-      <h1 class="display-4">Horizons: Lifestyle, Tech, Travel & Nature</h1>
-      <p class="lead my-3">Explore a world where nature meets innovation, lifestyle blends with adventure, and every post invites you to see life through a new lens. From tech trends and travel tales to mindful living and natural wonders — our blog is your space for curiosity, connection, and discovery.</p>
+      <h1 class="display-4">Horizons: Travel, Lifestyle, Technology, Culture, Food</h1>
+      <p class="lead my-3"> — our blog is your space for curiosity, connection, and discovery.</p>
     </div>
   </div>
 <!-- Post cards -->
 
 <div class="row mb-2">
   @for (post of posts; track $index){
-       <div class="col-md-6">
-      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-        <div class="col p-4 d-flex flex-column position-static">
-          <strong class="d-inline-block mb-2 text-primary">{{post.theme}}</strong>
-          
-          <h3 class="mb-0">{{post.title}}</h3>
-          <br/>
-          <div class="mb-2 text-muted">{{post.created_at | date : 'MMM d, y, h:mm:ss a'}}</div>
-          <!-- <div class="mb-1 text-muted">{{post.date}}</div> -->
-          <p class="card-text mb-auto" [innerHTML]="post.description | slice: 100"></p>
-          <br/>
-          <button routerLink="{{post._id}}" class="btn btn-info" >Details</button>
-        </div>
-        <div class="col-auto d-none d-lg-flex justify-content-center align-items-center border rounded p-2">
-            <img [src]="post.image" alt="" class="img-fluid" style="max-height:300px;">
-        </div>
-      </div>
-    </div>
+        
+          <div class="col-md-6 mb-4">
+            <div class="card h-100">
+              <img [src]="post.image" class="card-img-top" style="height: 500px; object-fit: cover;" alt="...">
+              <div class="card-body d-flex flex-column">
+                <span class="badge bg-success mb-2">{{post.theme}}</span>
+                <h5 class="card-title">{{post.title}}</h5>
+                <p class="card-text" [innerHTML]="post.description | slice: 100"></p>
+                <button routerLink="{{post._id}}" class="btn btn-info">Details</button>
+              </div>
+            </div>
+          </div>
+        
   }
-  </div>
+  </div> 
 </main>
 
