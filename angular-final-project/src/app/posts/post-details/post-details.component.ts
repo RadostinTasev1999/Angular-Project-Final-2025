@@ -93,7 +93,9 @@ export class PostDetailsComponent implements OnInit {
         
         this.isPostOwner = this.userService.user?._id === this.postOwner
 
-      })     
+      })    
+      
+      
       
 
   }
@@ -115,7 +117,7 @@ export class PostDetailsComponent implements OnInit {
       const commentOwnerId = this.userService.user?._id
       
       this.apiService.createPostComment(email,message,name,id,commentOwnerId).subscribe((message) => {
-          
+      this.noComments = false
       this.hideComments()
       })
 
@@ -127,14 +129,17 @@ export class PostDetailsComponent implements OnInit {
   showPostComments(){
 
         const postId = this.postId
+        const userId = this.userService.user?._id
 
-        this.apiService.getPostComments(postId).subscribe((comments) => {
+      
+
+        this.apiService.getPostComments(postId,userId).subscribe((comments) => {
          
           
           if (comments.length !== 0) {
             
-              this.postComments = comments
-              
+              this.postComments = comments  
+              console.log('Comments are:', comments)
               
           }else{
             
@@ -166,9 +171,13 @@ export class PostDetailsComponent implements OnInit {
 
     const id = this.postId
 
-    this.apiService.deletePost(id).subscribe((message) => {
-     window.alert({message})
-    this.router.navigate(['/posts'])
+    this.apiService.deletePost(id).subscribe((response: any) => {
+      
+     if (response.message.includes( 'Post successfully deleted!')) {    
+        window.alert('Post successfully deleted!')        
+        this.router.navigate(['/posts'])
+     }
+    
     })
   }
 
@@ -248,16 +257,17 @@ export class PostDetailsComponent implements OnInit {
     this.apiService.likeComment(commentId,postId,userId).subscribe((response) => {
         console.log('Message is:', response)
         if (response.message === 'Comment successfully liked!') {
-            this.isCommentLiked = true
+            console.log(response.message)
             
         }
         if (response.message === `User ${userId} has already liked comment ${commentId}`) {
-            this.isCommentLiked = true
+            console.log(response.message)
             
         }
-        
-        this.apiService.getPostComments(postId).subscribe(
+        debugger
+        this.apiService.getPostComments(postId,userId).subscribe(
           (comments) => {
+            debugger
             this.postComments = comments
           }
         )
