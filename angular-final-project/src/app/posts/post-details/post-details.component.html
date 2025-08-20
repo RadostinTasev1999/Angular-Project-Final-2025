@@ -180,12 +180,13 @@
                                                     
                                                     @if(!commentOwner(comment.owner) && isLogged){
                                                         <div class="d-inline-flex align-items-center gap-2 position-relative ms-auto">
-                                                            @if(!isCommentLiked){
+                                                            @if(!comment.likedByCurrentUser){
                                                                 <button (click)="onLikeComment(comment._id)" type="button"
                                                                     class="btn btn-outline-primary btn-sm rounded-pill px-3 py-1 shadow-sm">
                                                                     <i class="bi bi-pencil"></i> Like
                                                                 </button>
-                                                            }                                                            
+                                                            }
+                                                                                                                          
                                                             <button type="button" class="btn btn-success btn-sm rounded-pill px-2 py-1 shadow-sm">
                                                                 <i class="bi bi-pencil"></i> Likes {{comment.likedList && comment.likedList.length !== 0 ? comment.likedList.length : 0 }}
                                                             </button>
